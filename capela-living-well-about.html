@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Who We Are - Living Well, Wooster OH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=' js';</script>
+<link rel="stylesheet" href="sage.css">
+<style>
+/* Preview only. sage.css is byte-identical to the mockup's. */
+.brand__logo{height:56px;width:auto;display:block}
+.brand__logo--dark{display:none}
+.revs{grid-template-columns:repeat(3,1fr)}
+.nav.is-stuck .brand__logo--light{display:none}
+.nav.is-stuck .brand__logo--dark{display:block}
+
+/* NAV FIT: second nav action ("Existing Patients", added 2026-08-11) costs the
+   link row ~220px, which made "Who We Are" and "Patient Forms" wrap onto two
+   lines below roughly 1500px. The links now never wrap, and between the mobile
+   breakpoint and 1500px their padding and size tighten to make the room.
+   sage.css stays byte-identical; this is preview-only, like the logo rules. */
+.brand{flex:none}
+.nav__links a{white-space:nowrap}
+@media (min-width:1081px) and (max-width:1500px){
+  .nav__links{gap:0}
+  .nav__links a{padding-inline:.5em;font-size:14.5px}
+}
+/* Below 1250px the row cannot hold logo + six links + two buttons: the links
+   already wrapped there BEFORE this button existed, and with it the logo got
+   squeezed to nothing. So the existing-patient button steps aside below 1250,
+   and the footer contact card carries the same link at every width, which is
+   also how it is reached on mobile. The nowrap + tightening above means the
+   1081-1250 band now holds one clean line, which it never did before. */
+@media (max-width:1250px){ .nav__cta .btn-ghost{display:none} }
+</style>
+<style>/* Visible placeholders for facts not yet confirmed (emit.py ph()). */
+.le-ph{display:inline-block;padding:.1em .45em;border:1.5px dashed #b7791f;border-radius:4px;background:#fff7e6;color:#7a4b00;font:600 13px/1.4 system-ui,sans-serif;letter-spacing:0;text-transform:none;vertical-align:middle}
+.le-ph--block{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;min-height:120px}
+</style>
+<style>/* Client palette over Sage green (emit.py palette_css). */
+:root{--g-band:#5d7156;--g-mid:#7a8f72;--g-lite:#a5b79c;--g-lite-txt:#dde8d7;--g-deep:#3c4a37}
+.sec--green{background:radial-gradient(80% 120% at 88% 6%, rgba(165,183,156,.20) 0%, rgba(165,183,156,0) 58%),linear-gradient(158deg,#6b8063 0%,#5d7156 46%,#46573f 100%)}
+.ihero--green{background:radial-gradient(80% 120% at 88% 4%, rgba(165,183,156,.22) 0%, rgba(165,183,156,0) 56%),linear-gradient(158deg,#6b8063 0%,#5d7156 46%,#46573f 100%)}
+.cite{background:radial-gradient(90% 130% at 92% 0%, rgba(165,183,156,.2) 0%, rgba(165,183,156,0) 60%),linear-gradient(154deg,#6b8063 0%,#5d7156 52%,#46573f 100%)}
+</style>
+</head>
+<body>
+
+
+<div class="util">
+  <div class="wrap">
+    <a href="https://www.google.com/maps/search/?api=1&query=Living+Well%2C+5225+Cleveland+Rd%2C+Suite+A2%2C+Wooster%2C+OH+44691" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 5225 Cleveland Rd, Suite A2 <span class="le-ph">[suite number to confirm (A or A2)]</span>, Wooster</a>
+    <a href="tel:3303453336"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.4-1.2a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg> (330) 345-3336</a>
+    <span class="spacer"></span>
+    <span class="hide-s">Open Monday, Wednesday and Thursday</span>
+    <a href="https://www.facebook.com/livingwellwooster/" target="_blank" rel="noopener" class="soc" aria-label="Facebook"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg></a>
+    <a href="https://www.instagram.com/livingwell_wooster/" target="_blank" rel="noopener" class="soc" aria-label="Instagram"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/></svg></a>
+  </div>
+</div>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav__inner">
+      <a href="index.html" class="brand" aria-label="Living Well"><span class="le-ph">[logo to confirm: Logo.png or Spine Logo.png]</span> <span class="le-brandtxt">Living Well</span></a>
+      <div class="nav__links">
+        <a href="index.html">Home</a><a href="capela-living-well-about.html" class="on">Who We Are</a><a href="capela-living-well-services.html">Services</a><a href="capela-living-well-contact.html">Contact</a>
+      </div>
+      <div class="nav__cta">
+        <a href="capela-living-well-special.html" class="btn btn-ghost" target="_blank" rel="noopener">Existing Patients <span class="le-ph">[booking link needed]</span></a>
+        <a href="capela-living-well-special.html" class="btn btn-lite">Schedule an appointment</a>
+        <button class="nav__burger" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="ihero ihero--green on-dark">
+  <div class="ghost ghost--r" style="right:-3%;top:16%">Our Team</div>
+  <div class="wrap">
+    <div class="ihero__in">
+      <nav class="crumb reveal" style="--d:0"><a href="index.html">Home</a><i>/</i><b>Who we are</b></nav>
+      <span class="eyebrow reveal" style="--d:1">Meet the team</span>
+      <h1><span class="mask"><span style="--d:2">The people you</span></span><span class="mask"><span style="--d:3">will actually <em style="font-style:normal;color:var(--g-lite)">see</em></span></span></h1>
+      <span class="rule"></span>
+      <p class="ihero__sub reveal" style="--d:5">We want to show you how chiropractic care can improve all aspects of your health, not just your back.</p>
+    </div>
+  </div>
+  <div class="wave" style="--wave-end:#fff">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M1440 276.8s-255.057-1.964-432-1.54c-26.047.061-51.843 15.76-73.44 15.94-30.357.252-54.058-14.95-70.56-14.4-30.211 1.008-48 25.2-72 21.6-24-3.6-48-28.8-72-28.8s-48 25.2-72 28.8c-24 3.6-41.789-20.592-72-21.6-16.769-.559-42.412 14.64-73.44 14.388-21.623-.175-44.532-15.871-70.56-15.932C254.828 274.847 0 276.8 0 276.8V320h1440v-43.2Z"/></svg>
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M1440 276.8s-255.057-1.964-432-1.54c-26.047.061-51.843 15.76-73.44 15.94-30.357.252-54.058-14.95-70.56-14.4-30.211 1.008-48 25.2-72 21.6-24-3.6-48-28.8-72-28.8s-48 25.2-72 28.8c-24 3.6-41.789-20.592-72-21.6-16.769-.559-42.412 14.64-73.44 14.388-21.623-.175-44.532-15.871-70.56-15.932C254.828 274.847 0 276.8 0 276.8V320h1440v-43.2Z"/></svg>
+  </div>
+</header>
+
+<!-- ============ INTRO ============
+     Reuses v2's About band verbatim - the same two-column grid,
+     the same photo stack and the same choreography. The three
+     images are the patient's life, not the practice, which is the
+     rule that governs every stock slot on a Sage build. -->
+<section class="sec grain" id="about">
+  <div class="ghost ghost--l" style="left:-2%;top:6%">Welcome</div>
+  <div class="wrap">
+    <div class="about__grid about">
+      <div class="reveal">
+        <span class="eyebrow">About us</span>
+        <h2 style="font-size:var(--t-h2);margin-top:.3em">What can the Living Well team do for you?</h2>
+        <span class="rule"></span>
+        <p class="lead" style="margin-top:1.4em"><span class="le-ph">[about-page lead sentence needed]</span></p>
+        <p style="margin-top:1.2em;color:var(--ink-soft)"><span class="le-ph">[about-page paragraph needed]</span></p>
+        <div class="solo__acts" style="margin-top:2em">
+          <a href="capela-living-well-special.html" class="btn btn-primary">Schedule an appointment</a>
+          <a href="#tour" class="btn btn-ghost">See the office</a>
+        </div>
+      </div>
+      <div class="about__stack">
+        <figure class="tall"><img src="assets/about-portrait.webp" alt="An older adult back to gardening on a bright morning"></figure>
+        <figure class="wide" style="--wd:1.05s"><img src="assets/about-wide-1.webp" alt="A parent and young child outdoors together"></figure>
+        <figure class="wide" style="--wd:1.35s"><img src="assets/about-wide-2.webp" alt="An adult moving freely through an ordinary day"></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROSTER ============ -->
+<section class="sec sec--paper grain" id="team">
+  <div class="wrap">
+    <div class="head reveal">
+      <div>
+        <span class="eyebrow">Meet the team</span>
+        <h2>Who you will see</h2>
+        <span class="rule"></span>
+      </div>
+      <p class="head__note lead">The people you will meet when you come in.</p>
+    </div>
+
+    <div class="roster">
+
+      <div class="mem reveal" style="--d:0">
+        <div class="mem__slot" style="position:relative;overflow:hidden">
+          <img src="assets/team-dale-capela.webp" alt="Dale Capela, D.C., founder and chiropractor in Wooster, OH" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%">
+        </div>
+        <span class="mem__role">Founder and Chiropractor</span>
+        <h3>Dale Capela, D.C.</h3>
+        <p class="mem__bio">Dr. Dale Capela is a follower of Christ, husband, and father. He owns Complete Chiropractic and Living Well with his wife, Lydia. Together, they have 6 home-schooled children and live on a farm in the beautiful countryside of Wayne County. Dr. Capela graduated from Life University in ‘97 and has served thousands of families in Wayne County and the surrounding areas for the past 25 years! His mission is to partner with his patients in the pursuit of optimal wellness.</p><p class="mem__bio">He believes God has designed our bodies to heal and function well, and he aids in helping patients realize that reality. Dr. Dale has attended several chiropractic mission trips in India, Mexico, and the Dominican Republic. He is also a key contributor to the New York Times Bestseller “Body By God” written by Dr. Ben Lerner.</p><p class="mem__bio">As a chiropractor, he also specializes in neurology, and therapies, is trained in pediatric adjustments, and has brought in an additional doctor and assistants to aid in functional wellness and weight-loss resistance for patients’ whole body care. Dr. Dale continually educates himself and cares for his patients with the most up-to-date therapies and techniques. He is grateful for the opportunity to continue to lead his community in pursuing true health and wellness and is ready to serve you and your family.</p><p class="mem__bio">Dr. Dale is a member of the International Chiropractic Association (ICA), Ohio State Chiropractic Association (OSCA), and the Mid-Ohio Chiropractic Association (MOCA) to keep up to date with the latest methods of care and the best way to serve you! He has a huge desire to serve everyone he can and has been part of Chiropractic Mission trips to Mexico, The Dominican Republic, and India with Matthew 10 Ministries.</p><p class="mem__bio">When he’s not in the office, Dr. Dale enjoys farming and hunting. He also sings in a Men’s Christian ensemble and plays the guitar. He and his family enjoy attending church weekly at the Wooster Church of the Nazarene.</p>
+      </div>
+      <div class="mem reveal" style="--d:1">
+        <div class="mem__slot" style="position:relative;overflow:hidden">
+          <img src="assets/team-lydia-capela.webp" alt="Lydia Capela, founder in Wooster, OH" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%">
+        </div>
+        <span class="mem__role">Founder</span>
+        <h3>Lydia Capela</h3>
+        <p class="mem__bio">Lydia is the wife of Dr. Dale and a homeschooling mother to their six children. She raises puppies and goats on their farm in Wayne County. Lydia launched Living Well for weight loss and functional medicine in 2013. Her passion to see people live healthily is what motivates her mission. Lydia understands and teaches that God has created us beautifully and wonderfully and we have been given the responsibility to be good stewards of our bodies. However, she also understands the time and life pressures that are a part of our busy culture. Her mission is to help grow and educate those on the importance and the need for weight loss and functional medicine. She knows that education and accountability are the key elements in helping people sustain their healthy lifestyles. Together, Dr. Dale and Lydia continue on in their vision of transforming the lives of people in their community through healthy living. They are ready to help you next!</p><p class="mem__bio">"Long life to you! Good health to you and your household! And good health to all that is yours!" - 1 Samuel 25:6</p>
+      </div>
+      <div class="mem reveal" style="--d:2">
+        <div class="mem__slot" style="position:relative;overflow:hidden">
+          <img src="assets/team-aric-freischlag.webp" alt="Dr. Aric Freischlag, functional wellness coordinator in Wooster, OH" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%">
+        </div>
+        <span class="mem__role">Functional Wellness Coordinator</span>
+        <h3>Dr. Aric Freischlag</h3>
+        <p class="mem__bio">Dr. Aric leads the Functional Medicine department at Complete Chiropractic and Living Well. After earning his Doctorate through a traditional medical education, his own personal health journey opened the door to the world of functional medicine and root-cause healthcare. That experience transformed not only his own health, but also his passion for helping others.</p><p class="mem__bio">Today, Dr. Aric is dedicated to helping patients uncover the underlying causes of chronic health challenges rather than simply managing symptoms. By combining advanced laboratory testing, evidence-based functional medicine, and personalized care plans, he helps individuals of all ages restore health, optimize performance, and unlock their God-given healing potential.</p><p class="mem__bio">Outside of work, Dr. Aric enjoys spending time with his wife and three young daughters. Whether he's hiking, running, practicing archery, reading, or simply enjoying the outdoors with his family, he values living the healthy lifestyle he encourages his patients to pursue.</p>
+      </div>
+      <div class="mem reveal" style="--d:3">
+        <div class="mem__slot" style="position:relative;overflow:hidden">
+          <img src="assets/team-sicily-gliozzo.webp" alt="Sicily Gliozzo, lead patient manager in Wooster, OH" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%">
+        </div>
+        <span class="mem__role">Lead Patient Manager</span>
+        <h3>Sicily Gliozzo</h3>
+        <p class="mem__bio">Sicily runs our front desk, making sure we are prepared to serve each patient in the best way. In her spare time, she enjoys cooking, reading, camping, traveling, concerts, yoga, and spending time with her horse on the farm. One of her dreams is to have her own homestead to raise clean food and resources for her future family!</p>
+      </div>
+      <div class="mem reveal" style="--d:0">
+        <div class="mem__slot" style="position:relative;overflow:hidden">
+          <img src="assets/team-alexis-shepler.webp" alt="Alexis Shepler, assistant patient manager in Wooster, OH" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%">
+        </div>
+        <span class="mem__role">Assistant Patient Manager</span>
+        <h3>Alexis Shepler</h3>
+        <p class="mem__bio">Alexis greets our patients with a smile at our front desk. She is looking forward to opening a new chapter in her life by getting married in the fall! Alexis enjoys CrossFit, golf, spending time with her friends and family, and helping with worship for Youth Sundays at her church.</p>
+      </div>
+      <div class="mem reveal" style="--d:1">
+        <div class="mem__slot" style="position:relative;overflow:hidden">
+          <img src="assets/team-ty-capela.webp" alt="Ty Capela, chiropractic assistant in Wooster, OH" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%">
+        </div>
+        <span class="mem__role">Chiropractic Assistant</span>
+        <h3>Ty Capela</h3>
+        <p class="mem__bio">After growing up under chiropractic care, Ty will follow the same route and attend chiropractic school in the spring. He looks forward to getting married in the fall! Outside of work, he enjoys hunting, fishing, archery, music, and leading worship at his church.</p>
+      </div>
+      <div class="mem reveal" style="--d:2">
+        <div class="mem__slot" style="position:relative;overflow:hidden">
+          <img src="assets/team-kara-vellaccio.webp" alt="Kara Vellaccio, head of financial department in Wooster, OH" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%">
+        </div>
+        <span class="mem__role">Head of Financial Department</span>
+        <h3>Kara Vellaccio</h3>
+        <p class="mem__bio">Kara is the head of our billing department and enjoys working in a family atmosphere with the focus of helping people stay well. She has lived in many places growing up due to her father’s ministry placements, but now resides in Wooster with her husband. When she’s not working, she enjoys reading and writing, as well as spending time with her 7 nieces and 2 nephews.</p>
+      </div>
+      <div class="mem reveal" style="--d:3">
+        <div class="mem__slot" style="position:relative;overflow:hidden">
+          <img src="assets/team-jaimie-stauffer.webp" alt="Jaimie Stauffer, marketing coordinator in Wooster, OH" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%">
+        </div>
+        <span class="mem__role">Marketing Coordinator</span>
+        <h3>Jaimie Stauffer</h3>
+        <p class="mem__bio">Jaimie handles marketing, social media, and outreach events. She grew up in Wayne County, spent a few years living in Orlando, FL, and now resides in Hartville with her husband. She enjoys painting, gardening, sand volleyball, and traveling. She will take any opportunity to be outside in the sunshine!</p>
+      </div>
+      <div class="mem reveal" style="--d:0">
+        <div class="mem__slot" style="position:relative;overflow:hidden">
+          <img src="assets/team-mya-donatini.webp" alt="Mya Donatini, radiologist technologist in Wooster, OH" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%">
+        </div>
+        <span class="mem__role">Radiologist Technologist</span>
+        <h3>Mya Donatini</h3>
+        <p class="mem__bio">Mya is our Radiologist Technologist, assisting all of our chiropractic patients! Outside of work, she stays active by playing tennis, pickleball, and swimming. She loves to spend quality time with her friends and family, and enjoys going to coffee and Bible studies.</p>
+      </div>
+      <div class="mem reveal" style="--d:1">
+        <div class="mem__slot" style="position:relative;overflow:hidden">
+          <img src="assets/team-emily-garside.webp" alt="Emily Garside, therapy lead in Wooster, OH" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%">
+        </div>
+        <span class="mem__role">Therapy Lead</span>
+        <h3>Emily Garside</h3>
+        <p class="mem__bio">Emily is the head of our therapies department, ensuring patients have everything they need on their wellness journey. She graduated from the University of Akron with a B.S. in Biochemistry, and she also runs her own horse training and coaching business! She enjoys playing volleyball, tennis, and soccer.</p>
+      </div>
+      <div class="mem reveal" style="--d:2">
+        <div class="mem__slot" style="position:relative;overflow:hidden">
+          <img src="assets/team-athaleyah-capela.webp" alt="Athaleyah Capela, therapies assistant in Wooster, OH" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%">
+        </div>
+        <span class="mem__role">Therapies Assistant</span>
+        <h3>Athaleyah Capela</h3>
+        <p class="mem__bio">Athaleyah brings a great smile and joy to the Therapies Team. She loves to help each individual achieve optimal wellness through strength and recovery. Athaleyah loves animals, horseback riding, coffee, and spending time with her friends and family!</p>
+      </div>
+      <div class="mem reveal" style="--d:3">
+        <div class="mem__slot" style="position:relative;overflow:hidden">
+          <img src="assets/team-amelia-widdows.webp" alt="Amelia Widdows, therapies assistant in Wooster, OH" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%">
+        </div>
+        <span class="mem__role">Therapies Assistant</span>
+        <h3>Amelia Widdows</h3>
+        <p class="mem__bio">Amelia loves serving patients through their wellness journeys. Outside of work, she enjoys leading music at her church, reading, hunting, playing the flute and piccolo in her community band, and she recently got married over the summer!</p>
+      </div>
+      <div class="mem reveal" style="--d:0">
+        <div class="mem__slot" style="position:relative;overflow:hidden">
+          <img src="assets/team-angel-beard.webp" alt="Angel Beard, financial department assistant in Wooster, OH" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%">
+        </div>
+        <span class="mem__role">Financial Department Assistant</span>
+        <h3>Angel Beard</h3>
+        <p class="mem__bio">Angel brings a kind and gentle smile while she offers assistance to each patient. She enjoys spending time with her husband and children, and being a “GiGi” to her grandson. When she gets the chance, she loves to travel!</p>
+      </div>
+      <div class="mem reveal" style="--d:1">
+        <div class="mem__slot" style="position:relative;overflow:hidden">
+          <img src="assets/team-ashley-havener.webp" alt="Ashley Havener, functional client liaison in Wooster, OH" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%">
+        </div>
+        <span class="mem__role">Functional Client Liaison</span>
+        <h3>Ashley Havener</h3>
+        <p class="mem__bio">Ashley joined the team in 2020, and currently works remotely from her home in Montana. She helps functional wellness patients along their journeys, offering support, encouragement, and guidance. Outside of work, she loves to hike, hunt, swim, and kayak. She loves to spend time with her husband and son, and has a passion to study the Word of God.</p>
+      </div>
+      <div class="mem reveal" style="--d:2">
+        <div class="mem__slot" style="position:relative;overflow:hidden">
+          <img src="assets/team-keirstin-carroll.webp" alt="Keirstin Carroll, weight loss client liaison in Wooster, OH" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%">
+        </div>
+        <span class="mem__role">Weight Loss Client Liaison</span>
+        <h3>Keirstin Carroll</h3>
+        <p class="mem__bio">Keirstin joined the team in January 2014. She now works remotely, helping weight loss patients begin their program confidently and offering support throughout the process. She has a great passion for health and wellness and loves helping people achieve their God given potential.</p>
+      </div></div>
+</section>
+
+<!-- ============ WHY CHOOSE US + WHAT MAKES US DIFFERENT ============ -->
+<section class="sec grain" id="tour">
+  <div class="ghost ghost--r" style="right:-3%;top:4%">Different</div>
+  <div class="wrap">
+    <div class="head reveal">
+      <div>
+        <span class="eyebrow">Our strength</span>
+        <h2>Why choose us?</h2>
+        <span class="rule"></span>
+      </div>
+      <p class="head__note lead">Three reasons patients give us when we ask.</p>
+    </div>
+
+    <div class="bens" style="margin-bottom:clamp(28px,3.4vw,52px)">
+      <div class="card ben reveal" style="--d:0">
+        <span class="ben__n">01</span>
+        <h3><span class="le-ph">[reason 1 heading needed]</span></h3>
+        <p><span class="le-ph">[one or two sentences needed]</span></p>
+      </div>
+      <div class="card ben reveal" style="--d:1"><span class="ben__n">02</span><h3><span class="le-ph">[reason 2 heading needed]</span></h3><p><span class="le-ph">[one or two sentences needed]</span></p></div>
+      <div class="card ben reveal" style="--d:2"><span class="ben__n">03</span><h3><span class="le-ph">[reason 3 heading needed]</span></h3><p><span class="le-ph">[one or two sentences needed]</span></p></div>
+    </div>
+
+    <div class="bento">
+      <div class="card b b--hero reveal" style="--d:0">
+        <figure>
+          <img src="assets/Demo-1.webp" alt="A family together outdoors on a summer evening">
+          <figcaption>
+            <h3>What makes us different</h3>
+            <p>How a careful, specific approach gets somewhere when a general one has stalled.</p>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="card b b--green reveal" style="--d:1">
+        <h3>The office</h3>
+        <p style="margin-top:.7em">Find us at 5225 Cleveland Rd, Suite A2 in Wooster.</p>
+        <a href="capela-living-well-special.html" class="btn btn-lite" style="margin-top:auto;align-self:flex-start">Schedule an appointment</a>
+      </div>
+      <div class="card b b--stat reveal" style="--d:2">
+        <span class="b__n" data-count="3">3</span> <span class="b__l">Days a week in clinic, Monday, Wednesday and Thursday</span>
+      </div>
+      <div class="card b b--stat reveal" style="--d:3">
+        <span class="b__n" data-count="4">4</span> <span class="b__l">Core services under one roof</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="sec sec--ink on-dark">
+  <div class="wrap">
+    <div class="head reveal">
+      <div>
+        <span class="eyebrow">Testimonials</span>
+        <h2>What people say about Living Well</h2>
+        <span class="rule"></span>
+      </div>
+      <p class="head__note lead">A few of the things patients have said about the care they have had here.</p>
+    </div>
+    <div class="revs">
+      <div class="rev reveal" style="--d:0"><span class="rev__stars"></span><p>After dealing with years of dizziness, exhaustion, gut issues, palpitations, and other concerns- when every day felt like a fight to be able to function- I’ve seen a huge improvement in these symptoms under the care of Dr. Dale and Dr. Aric (and the whole team!). I was also able to stop taking a prescription medication, have more energy, and improved mental focus.</p><span class="rev__by"><span class="rev__av">J</span> Joanna</span></div><div class="rev reveal" style="--d:1"><span class="rev__stars"></span><p>Everyone here is fantastic! Treat you like family and listen to your needs. Excited to start finding solutions to my functional health issues!</p><span class="rev__by"><span class="rev__av">B</span> Benny</span></div><div class="rev reveal" style="--d:2"><span class="rev__stars"></span><p>Complete Chiropractic and Living Well is a genuine partner in your health care journey. It starts with walking in to a smiling face and friendly greeting from the front desk staff. You are then counseled by a doctor who really wants to help you get your body back to its God given design. So refreshing.</p><span class="rev__by"><span class="rev__av">J</span> James</span></div><div class="rev reveal" style="--d:3"><span class="rev__stars"></span><p>The doctors and staff are incredibly knowledgeable, thorough, and genuinely care about finding the root cause rather than just treating symptoms.</p><span class="rev__by"><span class="rev__av">K</span> Kyle</span></div><div class="rev reveal" style="--d:4"><span class="rev__stars"></span><p>Highly recommend Complete Chiropractic and Living Well services! They are dedicated to their craft. Always positive attitudes throughout the whole facility. They cover almost every aspect of health and can put together a plan for your expectation and your budget. It’s a complete package center! Thank you all for all that you have done for me!</p><span class="rev__by"><span class="rev__av">R</span> Ryan</span></div><div class="rev reveal" style="--d:5"><span class="rev__stars"></span><p>Doctors are very knowledgeable and work with you to get you where you need to be. Staff is always pleasant and helpful.</p><span class="rev__by"><span class="rev__av">M</span> Michele</span></div><div class="rev reveal" style="--d:6"><span class="rev__stars"></span><p>Dr. Aric is kind and patient and explains why he’s recommending certain treatments. Top notch staff!</p><span class="rev__by"><span class="rev__av">B</span> BethAnne</span></div><div class="rev reveal" style="--d:7"><span class="rev__stars"></span><p>This place has been such a blessing to me! I love their approach. It is professional and personal. They take the time to learn about your medical history, your goals and then go to work through a blood analysis to figure out the best plan for you. I have been pretty health conscious my whole life, but menopause threw me a big curve ball that I could not work through with traditional medicine. I am 3 months in and can't wait for my second blood draw. I am down 10 pounds, sleeping better, resting heart rate is down, learning a lot about nutrition and what my body needs.</p><span class="rev__by"><span class="rev__av">J</span> Jamie</span></div><div class="rev reveal" style="--d:8"><span class="rev__stars"></span><p>I dropped 53 pounds in 6 months. Beyond the weight loss I gained the skills to keep it off. The team is great. They were there for me to answer all my questions and encouraged me to succeed.</p><span class="rev__by"><span class="rev__av">J</span> Jennifer</span></div><div class="rev reveal" style="--d:9"><span class="rev__stars"></span><p>Dr. Aric helped me pinpoint muscles that were resulting in back pain, took me through therapy and gave me exercises to strengthen those weak areas and the improvement has amazing. I really appreciate his knowledge and help.</p><span class="rev__by"><span class="rev__av">T</span> Tiffany</span></div><div class="rev reveal" style="--d:10"><span class="rev__stars"></span><p>I lost a total of 30 pounds on the program, I don’t crave sweets or carbs anymore, and my energy levels are great! I have a clear mind for the first time in years!</p><span class="rev__by"><span class="rev__av">D</span> Darrell</span></div><div class="rev reveal" style="--d:11"><span class="rev__stars"></span><p>My experience with Living Well was excellent! I feel like I found my true self. I feel amazing! I would highly recommend!</p><span class="rev__by"><span class="rev__av">S</span> Sharon</span></div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="sec sec--green on-dark sec--wavebottom">
+  <div class="ghost ghost--r" style="right:-2%;top:8%">Book</div>
+  <div class="wrap">
+    <div class="endcta reveal">
+      <span class="eyebrow">Next step</span>
+      <h2 style="margin-top:.3em">Come and meet us.</h2>
+      <p class="lead">New patients are welcome. Come as you are, we will take it from there.</p>
+      <div class="endcta__acts">
+        <a href="capela-living-well-special.html" class="btn btn-lite">Schedule an appointment</a>
+        <a href="tel:3303453336" class="btn btn-ghost">(330) 345-3336</a>
+      </div>
+      <p style="margin-top:1.1em;font-size:15px;opacity:.85">Tell us a good time and we'll call to confirm.</p>
+    </div>
+  </div>
+  <div class="wave" style="--wave-end:var(--paper-2)">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M1440 276.8s-255.057-1.964-432-1.54c-26.047.061-51.843 15.76-73.44 15.94-30.357.252-54.058-14.95-70.56-14.4-30.211 1.008-48 25.2-72 21.6-24-3.6-48-28.8-72-28.8s-48 25.2-72 28.8c-24 3.6-41.789-20.592-72-21.6-16.769-.559-42.412 14.64-73.44 14.388-21.623-.175-44.532-15.871-70.56-15.932C254.828 274.847 0 276.8 0 276.8V320h1440v-43.2Z"/></svg>
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M1440 276.8s-255.057-1.964-432-1.54c-26.047.061-51.843 15.76-73.44 15.94-30.357.252-54.058-14.95-70.56-14.4-30.211 1.008-48 25.2-72 21.6-24-3.6-48-28.8-72-28.8s-48 25.2-72 28.8c-24 3.6-41.789-20.592-72-21.6-16.769-.559-42.412 14.64-73.44 14.388-21.623-.175-44.532-15.871-70.56-15.932C254.828 274.847 0 276.8 0 276.8V320h1440v-43.2Z"/></svg>
+  </div>
+</section>
+
+<footer class="foot" id="foot">
+  <div class="wrap">
+    <div class="foot__megawrap"><h2 class="foot__mega" id="mega">Contact <em>Us</em></h2></div>
+    <div class="foot__cards">
+      <div class="card fc fc--g reveal" style="--d:0"><h3>Living Well</h3><ul><li>5225 Cleveland Rd, Suite A2 <span class="le-ph">[suite number to confirm (A or A2)]</span><br>Wooster, OH</li><li><a href="tel:3303453336">(330) 345-3336</a></li><li>Open Monday, Wednesday and Thursday</li><li><a href="capela-living-well-special.html" target="_blank" rel="noopener">Existing patient booking <span class="le-ph">[booking link needed]</span></a></li></ul></div>
+      <div class="card fc reveal" style="--d:1"><h3>Services</h3><ul><li><a href="capela-living-well-services.html">Weight Loss</a></li><li><a href="capela-living-well-service-functional-medicine.html">Functional Medicine</a></li><li><a href="capela-living-well-service-red-light-therapy.html">Red Light Therapy</a></li><li><a href="capela-living-well-service-nutrition.html">Nutrition</a></li></ul></div>
+
+    </div>
+    <div class="foot__base"><span>&copy; 2026 Living Well</span><span class="spacer"></span><span>Preview for client review. Not yet live. <span class="le-ph">[colours assumed, to confirm with the practice]</span></span></div>
+  </div>
+</footer>
+
+<div class="mobar">
+  <a href="tel:3303453336" class="btn btn-ghost">Call</a>
+  <a href="capela-living-well-special.html" class="btn btn-primary">Schedule an appointment</a>
+</div>
+
+<script src="sage.js"></script>
+</body>
+</html>

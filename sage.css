@@ -1,0 +1,909 @@
+/* ============================================================
+   SAGE v2. Theory only. Not canon.
+
+   v1 failed on "it doesn't feel like the Sage site". It didn't,
+   and reading the real build showed why: I preserved the palette
+   and the serif and missed the three devices that actually carry
+   Sage's identity.
+
+     1. THE WAVE RIBBON. Three stacked SVGs, one shared path,
+        bottom-aligned, heights 320 / 216 / 146, filled
+        #6EC42F, #126736, then the next band's colour. Lifted
+        verbatim off the live build. Here they DRIFT.
+     2. THE BAND GREEN IS #126736, not #2E8B57. v1 used the wrong
+        green everywhere.
+     3. SAGE ALREADY SHIPS GRAIN (paper-grain-neutral.webp @ .1).
+        v1 "added" a texture Sage already had.
+
+   Plus: full-bleed photo bands with colour overlays, and a band
+   rhythm that alternates white / green / photo rather than
+   sitting on one warm ground the whole way down.
+   ============================================================ */
+
+:root{
+  /* Sage's REAL values, read off the live build */
+  --g-band:  #126736;   /* section green */
+  --g-mid:   #2E8B57;   /* palette green */
+  --g-lite:  #6EC42F;   /* wave + accent */
+  /* Same hue, lightened until it clears 4.5:1 on --g-band. --g-lite is a FILL
+     colour (waves, rules, the lite button) where contrast never applied; used as
+     small TEXT on the band it measured 3.18:1 and failed WCAG AA. This token is
+     for that one job, so the fills keep the colour the design was approved in. */
+  --g-lite-txt: #A7E07E;
+  --g-deep:  #0C4223;
+  --gold:    #E3AC45;   /* review stars only - the one non-green accent */
+
+  --paper:   #FFFFFF;
+  --paper-2: #FAFAFA;
+  --ink:     #1E2621;
+  --ink-soft:#5C6A62;
+  --stroke:  rgba(30,38,33,.10);
+  --stroke-2:rgba(30,38,33,.06);
+
+  --r:8px; --r-sm:6px; --r-pill:999px;
+  --shadow-1:0 1px 2px rgba(30,38,33,.05), 0 10px 30px -14px rgba(30,38,33,.14);
+  --shadow-2:0 2px 6px rgba(30,38,33,.05), 0 30px 70px -28px rgba(30,38,33,.26);
+  --ease:cubic-bezier(.16,1,.3,1);
+
+  --gut:clamp(20px,4vw,44px);
+  --maxw:1280px;
+
+  --t-eyebrow:clamp(11px,.74vw,13.5px);
+  --t-body:clamp(16px,1.05vw,18px);
+  --t-lead:clamp(18px,1.35vw,22px);
+  --t-h3:clamp(21px,1.6vw,27px);
+  --t-h2:clamp(32px,4vw,58px);
+  --t-h1:clamp(44px,6.4vw,104px);
+  --t-mega:clamp(64px,15vw,240px);
+
+  --wave-h:clamp(56px,7.5vw,116px);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Work Sans',system-ui,sans-serif;font-size:var(--t-body);line-height:1.75;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:Merriweather,Georgia,serif;font-weight:900;line-height:1.1;letter-spacing:-.015em;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut)}
+
+/* ---------- Sage's own grain, not a substitute ---------- */
+.grain{position:relative}
+.grain::before{
+  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:url('assets/paper-grain-neutral.webp') center/cover no-repeat;opacity:.10;
+}
+.grain > *{position:relative;z-index:2}
+
+/* ============================================================
+   THE WAVE RIBBON - Sage's signature, animated
+   ============================================================ */
+/* STATIC. The drift is gone (John, 2026-08-01) and he was right for a reason
+   worth keeping: a moving divider stacked directly on a scrolling conditions
+   strip put two competing motions at the single most important seam on the
+   page. The shape carries Sage's identity; the movement was mine, and it was
+   the second Tier 2 device in a budget that allows one.
+   Shape stays verbatim: BD's own 3-layer divider, 320/216/146, and this is a
+   NATIVE Breakdance feature, so no third-party divider CSS is imported. */
+.wave{position:absolute;left:0;right:0;bottom:-1px;height:var(--wave-h);z-index:6;pointer-events:none;overflow:hidden}
+.wave svg{position:absolute;left:0;bottom:0;width:100%;display:block}
+/* TWO layers (John, 2026-08-01). Heights stay Sage's own 320 and 216, i.e.
+   100% and 67.5% - the dropped layer is the third, not a re-invented ratio.
+   Keeping the SHORTER lime band rather than the taller one is deliberate:
+   #6EC42F is the loudest colour in the palette and this is the calmer of the
+   two possible pairs. Layer 2 is now the destination colour, so the divider
+   still resolves into whatever band follows it. */
+.wave svg:nth-child(1){height:100%;   fill:var(--g-lite)}
+.wave svg:nth-child(2){height:67.5%;  fill:var(--wave-end,#fff)}
+.wave--flip{top:-1px;bottom:auto;transform:scaleY(-1)}
+
+/* ---------- shared ---------- */
+.eyebrow{
+  display:inline-block;font-size:var(--t-eyebrow);font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--g-mid);
+}
+.on-dark .eyebrow, .eyebrow--light{color:var(--g-lite)}
+.lead{font-size:var(--t-lead);color:var(--ink-soft);line-height:1.6;font-weight:300}
+.on-dark .lead{color:rgba(255,255,255,.8)}
+.muted{color:var(--ink-soft)}
+.on-dark{color:#fff}
+.on-dark h1,.on-dark h2,.on-dark h3{color:#fff}
+.on-dark p{color:rgba(255,255,255,.8)}
+
+/* Sage's short green rule, drawn on entry */
+.rule{display:block;width:112px;height:5px;background:var(--g-lite);margin-top:.55em;border-radius:2px;transform-origin:left;transition:transform .9s var(--ease) .5s}
+.js .rule{transform:scaleX(0)}
+.js .is-in .rule{transform:scaleX(1)}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.6em;
+  font-size:15px;font-weight:500;padding:1.05em 1.9em;border-radius:var(--r-pill);
+  border:1px solid transparent;cursor:pointer;position:relative;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease);
+  white-space:nowrap;
+}
+.btn-primary{background:var(--g-band);color:#fff;box-shadow:var(--shadow-1)}
+.btn-primary:hover{background:var(--g-mid);box-shadow:0 14px 32px -12px rgba(18,103,54,.6)}
+.btn-lite{background:var(--g-lite);color:var(--g-deep)}
+.btn-lite:hover{background:#7fd63c}
+.btn-ghost{background:rgba(255,255,255,.9);color:var(--ink);border-color:var(--stroke)}
+.btn-ghost:hover{background:#fff}
+.on-dark .btn-ghost{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.28);backdrop-filter:blur(8px)}
+.on-dark .btn-ghost:hover{background:rgba(255,255,255,.2)}
+
+.card{background:#fff;border:1px solid var(--stroke-2);border-radius:var(--r);box-shadow:var(--shadow-1);overflow:hidden;position:relative}
+.ph{display:inline-block;font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#9A6B1F;background:rgba(214,158,46,.14);border:1px solid rgba(214,158,46,.3);padding:.28em .6em;border-radius:4px;vertical-align:middle}
+.on-dark .ph,.svc .ph{color:#F6E4B4;background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.26)}
+
+/* ============================================================
+   MOTION. Every effect below is gated on prefers-reduced-motion.
+   ============================================================ */
+/* The hidden start states are gated on `.js`. Without script the page
+   renders fully visible instead of a blank hero, which is what used to
+   happen if the observer never ran. Motion is the enhancement, never
+   the thing that makes content exist. */
+.reveal{transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--d,0)*90ms)}
+.js .reveal{opacity:0;transform:translateY(28px)}
+.js .reveal.is-in{opacity:1;transform:none}
+
+/* clip-path wipe for images */
+.wipe{transition:clip-path 1.15s var(--ease);transition-delay:calc(var(--d,0)*90ms)}
+.js .wipe{clip-path:inset(0 0 100% 0)}
+.js .wipe.is-in{clip-path:inset(0 0 0 0)}
+
+/* line-mask headline */
+.mask{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
+.mask > span{display:block;transition:transform 1.1s var(--ease);transition-delay:calc(var(--d,0)*110ms)}
+.js .mask > span{transform:translateY(112%)}
+.js .is-in .mask > span{transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal,.wipe,.mask>span,.slide-l,.slide-r,
+  .ghost,.about__stack figure{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
+  .rule{transform:scaleX(1)!important;transition:none!important}
+  /* the divider and the conditions strip carry no motion at all now, so there
+     is nothing left here to switch off for them */
+  .hero__img{transform:none!important}
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important}
+}
+
+/* ============================================================
+   CHROME
+   ============================================================ */
+.util{background:var(--g-band);color:rgba(255,255,255,.88);font-size:13.5px;position:relative;z-index:70}
+.util .wrap{display:flex;gap:26px;align-items:center;min-height:44px;flex-wrap:wrap}
+.util a{display:inline-flex;align-items:center;gap:.5em}
+.util a:hover{color:#fff}
+.util .spacer{margin-left:auto}
+.util .soc{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.15);display:inline-flex;align-items:center;justify-content:center;transition:background .3s var(--ease)}
+.util .soc:hover{background:rgba(255,255,255,.32)}
+
+/* nav starts transparent OVER the hero, the way Sage's does */
+.nav{position:fixed;top:44px;left:0;right:0;z-index:65;padding:16px 0;transition:padding .45s var(--ease),background .45s var(--ease),box-shadow .45s var(--ease),top .45s var(--ease)}
+.nav__inner{display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;font-family:Merriweather,serif;font-weight:700;font-size:17px;letter-spacing:-.02em;color:#fff;white-space:nowrap;transition:color .45s var(--ease)}
+.brand .mark{width:36px;height:36px;border-radius:8px;background:var(--g-lite);color:var(--g-deep);flex:none;display:grid;place-items:center}
+.nav__links{display:flex;gap:4px;margin-inline:auto}
+.nav__links a{font-size:15px;font-weight:500;color:rgba(255,255,255,.92);padding:.55em 1em;border-radius:var(--r-pill);transition:background .3s var(--ease),color .3s var(--ease)}
+.nav__links a:hover,.nav__links a.on{background:rgba(255,255,255,.16)}
+.nav__cta{display:flex;align-items:center;gap:12px}
+.nav__burger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;cursor:pointer}
+
+.nav.is-stuck{top:0;padding:10px 0;background:rgba(255,255,255,.94);backdrop-filter:blur(18px) saturate(1.4);box-shadow:var(--shadow-1)}
+.nav.is-stuck .brand{color:var(--ink)}
+.nav.is-stuck .nav__links a{color:var(--ink-soft)}
+.nav.is-stuck .nav__links a:hover,.nav.is-stuck .nav__links a.on{background:rgba(18,103,54,.09);color:var(--g-band)}
+.nav.is-stuck .nav__burger{border-color:var(--stroke);background:#fff;color:var(--ink)}
+
+/* ============================================================
+   HERO - full bleed, full height, animated
+   ============================================================ */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
+.hero__media{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero__img{
+  position:absolute;inset:-8% 0 -8% 0;width:100%;height:116%;object-fit:cover;object-position:62% 42%;
+  will-change:transform;transform:scale(1.1);
+  animation:heroIn 1.9s var(--ease) forwards;
+}
+@keyframes heroIn{to{transform:scale(1)}}
+.hero__scrim{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(100deg, rgba(20,26,22,.86) 0%, rgba(20,26,22,.66) 34%, rgba(20,26,22,.12) 62%, rgba(20,26,22,0) 78%),
+    linear-gradient(0deg, rgba(12,66,35,.42) 0%, rgba(12,66,35,0) 38%);
+}
+.hero .wrap{position:relative;z-index:4;width:100%;padding-block:clamp(90px,13vh,150px)}
+.hero__in{max-width:min(760px,64%)}
+.hero .eyebrow{color:rgba(255,255,255,.72);letter-spacing:.28em}
+.hero h1{font-size:var(--t-h1);color:#fff;margin:.34em 0 0;text-shadow:0 2px 40px rgba(0,0,0,.28)}
+.hero h1 em{font-style:normal;color:var(--g-lite)}
+.hero__sub{margin-top:1.6em;max-width:44ch;color:rgba(255,255,255,.86);font-size:var(--t-lead);font-weight:300;line-height:1.6}
+.hero__acts{margin-top:2.3em;display:flex;gap:14px;flex-wrap:wrap}
+.hero__stats{margin-top:clamp(34px,5vh,64px);display:flex;gap:clamp(24px,3.4vw,54px);flex-wrap:wrap}
+.hero__stats b{display:block;font-family:Merriweather,serif;font-weight:900;font-size:clamp(26px,2.6vw,40px);line-height:1;letter-spacing:-.03em;color:var(--g-lite)}
+.hero__stats span{display:block;font-size:13px;color:rgba(255,255,255,.72);margin-top:.35em;line-height:1.4}
+
+.scrollcue{position:absolute;left:50%;bottom:calc(var(--wave-h) + 14px);z-index:7;transform:translateX(-50%);display:grid;place-items:center;gap:7px;color:rgba(255,255,255,.7);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+.scrollcue i{display:block;width:1px;height:34px;background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0));animation:cue 2.1s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.25;transform:scaleY(.55)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ============================================================
+   BANDS
+   ============================================================ */
+.sec{position:relative;padding:clamp(66px,8.4vw,138px) 0;overflow:hidden}
+/* A flat fill reads dead at this size. A directional wash plus a soft corner
+   highlight gives it depth without becoming a "gradient background". */
+.sec--green{
+  background:
+    radial-gradient(80% 120% at 88% 6%, rgba(110,196,47,.20) 0%, rgba(110,196,47,0) 58%),
+    linear-gradient(158deg, #17743F 0%, #126736 46%, #0C4A28 100%);
+  color:#fff;
+}
+.sec--paper{background:var(--paper-2)}
+/* Reviews band: NO photograph. John saw it with the image missing and preferred
+   it - the reviews carry the band on their own and stop competing with a picture
+   nobody reads under an 80% scrim. Near-black with a green cast, not pure black,
+   and a whisper of depth so it is not dead flat. */
+.sec--ink{background:radial-gradient(125% 100% at 50% 0%, #1C251E 0%, #10160F 72%);color:#fff}
+.sec--ink .rev{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.11)}
+.sec .wrap{position:relative;z-index:3}
+.sec--wavebottom{padding-bottom:calc(clamp(66px,8.4vw,138px) + var(--wave-h))}
+
+.ghost{
+  position:absolute;z-index:0;pointer-events:none;user-select:none;
+  font-family:Merriweather,serif;font-weight:900;letter-spacing:-.05em;
+  font-size:var(--t-mega);line-height:.8;color:rgba(30,38,33,.035);white-space:nowrap;
+}
+.sec--green .ghost,.sec--photo .ghost{color:rgba(255,255,255,.05)}
+
+.head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(20px,3vw,56px);align-items:end;margin-bottom:clamp(34px,4vw,62px)}
+.head h2{font-size:var(--t-h2);margin:.3em 0 0}
+.head__note{padding-bottom:.6em}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4.4vw,80px);align-items:center}
+.about p+p{margin-top:1.1em}
+.about__stack{display:grid;grid-template-columns:1fr 1fr;gap:14px;position:relative}
+.about__stack figure{margin:0;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-1);background:var(--paper-2)}
+.about__stack img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.about__stack figure:hover img{transform:scale(1.06)}
+.about__stack .tall{grid-row:span 2;aspect-ratio:3/4.6}
+.about__stack .wide{aspect-ratio:4/3}
+
+/* An unfilled slot FILLS rather than hides: a designed panel that says what
+   belongs there, never a grey box and never a stand-in image that is wrong.
+   [[placeholders-not-empty-states]] */
+.slot{background:linear-gradient(158deg,rgba(46,139,87,.14),rgba(18,103,54,.10));border:1px dashed rgba(18,103,54,.34);display:grid;place-items:center;text-align:center}
+.slot__in{display:block;padding:1.2em 1.3em;max-width:30ch;font-size:12.5px;line-height:1.5;color:var(--ink-soft)}
+.slot__in b{display:block;font-family:Merriweather,serif;font-size:15px;color:var(--g-band);margin-bottom:.35em}
+.slot__in .ph{margin-top:.7em}
+
+/* ---- ABOUT BAND CHOREOGRAPHY (John, 2026-08-01) ----------------------
+   Ghost "Welcome" comes in from the LEFT. Portrait arrives from the RIGHT
+   and lands FIRST. The two wides then slide out to the right FROM BEHIND
+   the portrait: they start parked exactly one column + one gap to the left,
+   which is the portrait's own footprint, and they sit under it on z-index.
+   They carry no fade, so they are genuinely revealed by moving rather than
+   by appearing. Opacity flips instantly at the moment travel starts, which
+   is the frame they are still fully covered.                            */
+/* Slowed 2026-08-01: at the old speed the whole band had resolved before John
+   had scrolled far enough to watch it. Durations up ~60%, and the trigger
+   moved much later down the viewport (see ioAbout in the script). */
+/* Every ghost drifts in from the side it sits on, so the movement reads as the
+   word arriving rather than sliding across the band. */
+.ghost{transition:transform 1.7s var(--ease),opacity 1.7s var(--ease)}
+.js .ghost{opacity:0}
+.js .ghost--l{transform:translateX(-90px)}
+.js .ghost--r{transform:translateX(90px)}
+.js .ghost.is-in{opacity:1;transform:none}
+
+/* directional slide-ins, same timing family as the About band */
+.slide-l,.slide-r{transition:transform 1.15s var(--ease),opacity .9s var(--ease);transition-delay:calc(var(--d,0)*90ms)}
+.js .slide-l{transform:translateX(-70px);opacity:0}
+.js .slide-r{transform:translateX(70px);opacity:0}
+.js .slide-l.is-in,.js .slide-r.is-in{transform:none;opacity:1}
+
+.about__stack .tall{z-index:2}
+.about__stack .wide{z-index:1}
+.about__stack figure{transition:transform 1.5s var(--ease),opacity .95s var(--ease)}
+
+/* Below 721px the grid reflows: the portrait stops spanning two rows and the
+   second wide wraps into column 1, so "one column to the left" is off-canvas
+   rather than behind the portrait (measured: it parked at -154px on a 375
+   viewport). The fan-out depends on a layout that only exists above that
+   breakpoint, so mobile gets a plain reveal instead. */
+.js .about__stack figure{transform:translateY(22px);opacity:0}
+.js .about__stack figure.is-in{transform:none;opacity:1}
+
+@media (min-width:721px){
+  .js .about__stack .tall{transform:translateX(70px);opacity:0}
+  .js .about__stack .tall.is-in{transform:none;opacity:1}
+  /* parked exactly one column + one gap left = the portrait's own footprint */
+  .js .about__stack .wide{transform:translateX(calc(-100% - 14px));opacity:0}
+  /* the wides start AFTER the portrait's fade completes (.95s), so the 1.05s
+     first delay leaves a 100ms margin where the portrait is fully opaque and
+     the wides are still genuinely hidden behind it */
+  .js .about__stack .wide.is-in{
+    transform:none;opacity:1;
+    transition:transform 1.7s var(--ease) var(--wd,1.05s), opacity .01s linear var(--wd,1.05s);
+  }
+}
+
+/* ============================================================
+   BENTO
+   ============================================================ */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(152px,auto);gap:14px}
+.b{padding:clamp(20px,1.7vw,30px);display:flex;flex-direction:column}
+.b h3{font-size:var(--t-h3)}
+.b p{font-size:15px;color:var(--ink-soft);line-height:1.65}
+.b--hero{grid-column:span 2;grid-row:span 2;padding:0}
+.b--hero figure{margin:0;position:relative;height:100%;min-height:330px}
+.b--hero img{width:100%;height:100%;object-fit:cover}
+.b--hero figcaption{position:absolute;inset:auto 0 0 0;padding:clamp(22px,2vw,34px);background:linear-gradient(0deg,rgba(9,32,19,.92) 12%,rgba(9,32,19,.5) 56%,rgba(9,32,19,0) 100%);color:#fff}
+.b--hero figcaption h3{color:#fff}
+.b--hero figcaption p{color:rgba(255,255,255,.82);margin-top:.6em;max-width:34ch}
+.b--stat{justify-content:space-between}
+.b__n{font-family:Merriweather,serif;font-weight:900;letter-spacing:-.045em;line-height:.92;font-size:clamp(44px,4.4vw,72px);color:var(--g-band)}
+.b__l{font-size:14px;color:var(--ink-soft);margin-top:.35em}
+.b--green{background:var(--g-band);color:#fff;grid-column:span 2}
+.b--green h3{color:#fff}.b--green p{color:rgba(255,255,255,.78)}.b--green .b__n{color:var(--g-lite)}.b--green .b__l{color:rgba(255,255,255,.7)}
+.b--img{padding:0;position:relative;min-height:190px}
+.b--img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 1.2s var(--ease)}
+.b--img:hover img{transform:scale(1.07)}
+.b--img .tag{position:absolute;z-index:2;left:14px;bottom:14px;background:rgba(255,255,255,.92);border-radius:var(--r-pill);padding:.5em 1em;font-size:13px;font-weight:500}
+.b--quote{grid-column:span 2;justify-content:center}
+.b--quote blockquote{margin:0;font-family:Merriweather,serif;font-size:clamp(18px,1.6vw,25px);font-style:italic;font-weight:300;line-height:1.5}
+.b--quote cite{display:block;margin-top:1.1em;font-family:'Work Sans',sans-serif;font-style:normal;font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* ============================================================
+   SERVICES - heading PINS while the cards move past it
+   ============================================================ */
+.svc__grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(26px,3.6vw,64px);align-items:start}
+.svc__side{position:sticky;top:clamp(96px,12vh,132px)}
+.svc__list{display:flex;flex-direction:column;gap:14px}
+.svc{
+  position:relative;display:grid;grid-template-columns:96px 1fr auto;gap:clamp(16px,2vw,30px);align-items:center;
+  padding:clamp(18px,1.8vw,26px);border-radius:var(--r);overflow:hidden;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);
+  transition:background .45s var(--ease),transform .45s var(--ease),border-color .45s var(--ease);
+}
+.svc:hover{background:rgba(255,255,255,.12);transform:translateX(8px);border-color:rgba(110,196,47,.5)}
+.svc__thumb{width:96px;aspect-ratio:1;border-radius:var(--r-sm);overflow:hidden;flex:none}
+.svc__thumb img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
+.svc:hover .svc__thumb img{transform:scale(1.1)}
+.svc h3{font-size:clamp(18px,1.5vw,23px);color:#fff}
+.svc p{font-size:14.5px;color:rgba(255,255,255,.72);margin-top:.35em}
+.svc__no{position:absolute;top:10px;right:74px;font-family:Merriweather,serif;font-weight:900;font-size:clamp(30px,3vw,46px);color:rgba(255,255,255,.09);line-height:1;pointer-events:none}
+.svc__go{width:44px;height:44px;border-radius:50%;background:var(--g-lite);color:var(--g-deep);display:grid;place-items:center;flex:none;transition:transform .4s var(--ease)}
+.svc:hover .svc__go{transform:rotate(-45deg) scale(1.1)}
+
+/* ============================================================
+   TEAM - must work at N=1 with NO supplied photography
+   ============================================================ */
+.teamswitch{display:inline-flex;gap:4px;padding:5px;background:rgba(30,38,33,.06);border-radius:var(--r-pill);margin-bottom:clamp(28px,3.4vw,48px)}
+.teamswitch button{
+  font-family:'Work Sans',sans-serif;font-size:13.5px;font-weight:500;color:var(--ink-soft);
+  padding:.6em 1.25em;border:0;border-radius:var(--r-pill);background:transparent;cursor:pointer;transition:background .3s var(--ease),color .3s var(--ease);
+}
+.teamswitch button.on{background:#fff;color:var(--ink);box-shadow:var(--shadow-1)}
+.teamstate{display:none}
+.teamstate.on{display:block}
+
+/* --- SOLO: one doctor, no photo supplied. The default. --- */
+.solo{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(28px,4.4vw,76px);align-items:center}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;background:linear-gradient(158deg,var(--g-mid),var(--g-band) 58%,var(--g-deep));box-shadow:var(--shadow-2);display:grid;place-items:center}
+.portrait__mono{font-family:Merriweather,serif;font-weight:900;font-size:clamp(76px,9vw,150px);color:rgba(255,255,255,.16);line-height:1;letter-spacing:-.05em}
+.portrait__wave{position:absolute;left:0;right:0;bottom:0;height:38%;opacity:.22;pointer-events:none}
+.portrait__wave svg{position:absolute;bottom:0;left:0;width:100%;height:100%;fill:var(--g-lite)}
+.portrait__note{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:1.2em 1.4em;background:linear-gradient(0deg,rgba(9,32,19,.86),rgba(9,32,19,0));color:rgba(255,255,255,.9);font-size:13px;line-height:1.5}
+.solo__name{font-size:clamp(34px,4.4vw,64px);margin-top:.24em}
+.solo__creds{display:flex;flex-wrap:wrap;gap:9px;margin-top:1.6em}
+.cred{display:inline-flex;align-items:center;gap:.5em;font-size:13.5px;font-weight:500;background:#fff;border:1px solid var(--stroke-2);border-radius:var(--r-pill);padding:.6em 1.1em;box-shadow:var(--shadow-1)}
+.cred--g{background:rgba(18,103,54,.09);border-color:rgba(18,103,54,.2);color:var(--g-band)}
+.solo__body{margin-top:1.6em;max-width:52ch}
+.solo__acts{margin-top:2em;display:flex;gap:12px;flex-wrap:wrap}
+
+/* --- TEAM: the scatter, only when photos exist --- */
+.scatter{position:relative;min-height:clamp(460px,52vw,700px);display:grid;place-items:center}
+.scatter__mid{position:relative;z-index:6;text-align:center;max-width:min(520px,44vw)}
+.tile{position:absolute;z-index:2;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-2);background:#E8E5DA;transition:transform .6s var(--ease)}
+.tile img{width:100%;height:100%;object-fit:cover}
+.tile:hover{transform:translateY(-6px) rotate(0deg)!important}
+.t1{left:0%;top:3%;width:clamp(92px,10vw,146px);aspect-ratio:4/5;transform:rotate(-5deg)}
+.t2{left:6%;top:44%;width:clamp(104px,11.5vw,170px);aspect-ratio:4/5;transform:rotate(4deg)}
+.t3{left:1%;bottom:1%;width:clamp(80px,8.5vw,120px);aspect-ratio:1;transform:rotate(7deg)}
+.t4{right:6%;top:1%;width:clamp(88px,9.5vw,134px);aspect-ratio:4/5;transform:rotate(-6deg)}
+.t5{right:0%;top:36%;width:clamp(104px,11.5vw,166px);aspect-ratio:4/5;transform:rotate(5deg)}
+.t6{right:7%;bottom:1%;width:clamp(94px,10.5vw,150px);aspect-ratio:1;transform:rotate(-4deg)}
+.plabel{position:absolute;z-index:5;font-size:12.5px;font-weight:500;white-space:nowrap;background:#fff;border:1px solid var(--stroke-2);border-radius:var(--r-pill);padding:.55em 1.05em;box-shadow:var(--shadow-1)}
+.plabel--g{background:rgba(18,103,54,.09);border-color:rgba(18,103,54,.2);color:var(--g-band)}
+.p1{left:0%;top:31%;transform:rotate(-3deg)}
+.p2{left:2%;bottom:26%;transform:rotate(2deg)}
+.p3{right:0%;top:24%;transform:rotate(3deg)}
+.p4{right:1%;bottom:30%;transform:rotate(-2deg)}
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+/* The conditions strip is no longer a scrolling marquee sitting BELOW the
+   divider. It is the band the divider flows INTO, so the hero-to-content seam
+   is one device instead of two. Static, no mask, no motion. */
+.conds{background:var(--g-band);padding:clamp(20px,2.4vw,30px) 0}
+.conds__row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 0}
+.conds__i{
+  display:inline-flex;align-items:center;font-size:14.5px;color:rgba(255,255,255,.86);
+  padding-inline:clamp(12px,1.3vw,20px);white-space:nowrap;transition:color .3s var(--ease);
+}
+.conds__i:hover{color:#fff}
+.conds__i+.conds__i{border-left:1px solid rgba(255,255,255,.2)}
+.conds__more{color:var(--g-lite-txt);font-weight:500}
+
+/* ============================================================
+   REVIEWS / CTA / FAQ
+   ============================================================ */
+.revs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rev{padding:clamp(22px,2vw,30px);display:flex;flex-direction:column;gap:1em;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:var(--r)}
+.rev__stars{color:var(--gold);font-size:14px;letter-spacing:.16em}
+.rev p{font-size:15px;line-height:1.7;color:rgba(255,255,255,.78);flex:1}
+.rev__by{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:500;color:#fff}
+.rev__av{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.14);flex:none;display:grid;place-items:center;font-family:Merriweather,serif;font-size:13px}
+
+.cta__in{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,60px);align-items:center}
+.cta__aside{display:flex;flex-direction:column;gap:11px}
+.cta__row{display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:1em 1.15em;font-size:14.5px}
+
+/* ---- expanding hours + location ---- */
+.cta__acc{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);overflow:hidden;transition:background .35s var(--ease)}
+.cta__acc[open]{background:rgba(255,255,255,.12)}
+.cta__acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:13px;padding:1em 1.15em;font-family:'Work Sans',sans-serif;font-size:14.5px;font-weight:500;color:#fff}
+.cta__acc summary::-webkit-details-marker{display:none}
+.cta__acc summary::after{
+  content:'';margin-left:auto;flex:none;width:24px;height:24px;border-radius:50%;
+  background:rgba(255,255,255,.14) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 12 12'%3E%3Cpath d='M6 1v10M1 6h10' stroke='%23fff' stroke-width='1.9' stroke-linecap='round'/%3E%3C/svg%3E") center/11px no-repeat;
+  transition:transform .4s var(--ease);
+}
+.cta__acc[open] summary::after{transform:rotate(135deg)}
+.cta__acc__body{padding:0 1.15em 1.15em;font-size:14px}
+.hours{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.5em}
+.hours li{display:flex;justify-content:space-between;gap:1.2em;align-items:baseline;border-bottom:1px dashed rgba(255,255,255,.12);padding-bottom:.5em}
+.hours li:last-child{border-bottom:0}
+.hours span{color:rgba(255,255,255,.66)}
+.hours b{font-weight:500;text-align:right}
+.hours__note{margin-top:.9em;font-size:12px;color:rgba(255,255,255,.55)}
+.mapslot{
+  aspect-ratio:16/10;border-radius:var(--r);display:grid;place-items:center;text-align:center;
+  background:linear-gradient(150deg,rgba(255,255,255,.10),rgba(255,255,255,.04));
+  border:1px dashed rgba(255,255,255,.28);color:rgba(255,255,255,.72);font-size:12.5px;line-height:1.6;padding:1em;
+}
+.cta__row .ic{width:34px;height:34px;border-radius:50%;background:rgba(110,196,47,.22);color:var(--g-lite);display:grid;place-items:center;flex:none}
+.cta__row small{display:block;font-size:12px;color:rgba(255,255,255,.6)}
+
+.faq{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(26px,3.4vw,60px);align-items:start}
+.faq h2{font-size:clamp(30px,3.4vw,48px)}
+.faq__list{display:flex;flex-direction:column;gap:9px}
+details{background:#fff;border:1px solid var(--stroke-2);border-radius:var(--r);overflow:hidden;transition:box-shadow .35s var(--ease)}
+details[open]{box-shadow:var(--shadow-1)}
+summary{list-style:none;cursor:pointer;padding:1.15em 1.4em;display:flex;align-items:center;gap:16px;font-family:Merriweather,serif;font-weight:700;font-size:clamp(15.5px,1.15vw,18px);line-height:1.4}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'';margin-left:auto;flex:none;width:26px;height:26px;border-radius:50%;background:rgba(18,103,54,.1) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 1v10M1 6h10' stroke='%23126736' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") center/12px no-repeat;transition:transform .4s var(--ease)}
+details[open] summary::after{transform:rotate(135deg)}
+.faq__a{padding:0 1.4em 1.4em;font-size:15.5px;color:var(--ink-soft);line-height:1.7}
+
+/* ============================================================
+   FOOTER - CONTACT US rises from BEHIND the cards on scroll
+   ============================================================ */
+.foot{position:relative;background:var(--paper-2);padding-top:clamp(70px,9vw,150px);overflow:hidden}
+/* The wrapper must never be shorter than the line it masks, or it clips the tops
+   of the letters - which is what was cutting the C off "Contact". Tie it to the
+   SAME clamp as the type (x its 0.82 line-height, plus a little) so the two can
+   never drift apart at any viewport. */
+.foot__megawrap{position:relative;height:calc(var(--t-mega) * 0.86);overflow:hidden}
+.foot__mega{
+  position:absolute;left:0;right:0;bottom:0;
+  font-family:Merriweather,serif;font-weight:900;font-size:var(--t-mega);
+  letter-spacing:-.055em;line-height:.82;color:var(--ink);text-align:center;margin:0;
+  transform:translateY(var(--rise,100%));will-change:transform;
+}
+.foot__mega em{font-style:normal;color:var(--g-lite)}
+.foot__cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;position:relative;z-index:4;margin-top:clamp(-30px,-2.6vw,-14px)}
+.fc{padding:clamp(22px,2vw,30px)}
+.fc h3,.fc h4{font-size:16px}
+.fc ul{list-style:none;margin:1em 0 0;padding:0;display:flex;flex-direction:column;gap:.62em;font-size:14.5px;color:var(--ink-soft)}
+.fc a:hover{color:var(--g-band)}
+.fc--g{background:var(--g-band);color:#fff}
+.fc--g h3,.fc--g h4{color:#fff}.fc--g ul{color:rgba(255,255,255,.8)}
+.foot__base{margin-top:clamp(30px,4vw,54px);border-top:1px solid var(--stroke);padding:24px 0 30px;display:flex;gap:18px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--ink-soft)}
+.foot__base .spacer{margin-left:auto}
+
+.mobar{display:none;position:fixed;z-index:80;inset:auto 12px 12px;gap:8px;background:rgba(255,255,255,.94);backdrop-filter:blur(18px);border:1px solid var(--stroke);border-radius:var(--r-pill);padding:8px;box-shadow:var(--shadow-2)}
+.mobar .btn{flex:1;justify-content:center;padding:.95em 1em;font-size:14px}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1080px){
+  .nav__links{display:none}
+  .nav__burger{display:grid;place-items:center}
+  .nav__cta .btn{display:none}
+  .hero__in{max-width:100%}
+  .hero__scrim{background:linear-gradient(0deg,rgba(16,22,18,.92) 8%,rgba(16,22,18,.62) 48%,rgba(16,22,18,.3) 100%)}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .b--hero,.b--green,.b--quote{grid-column:span 2}
+  .svc__grid,.about__grid,.solo,.cta__in,.faq{grid-template-columns:1fr}
+  .svc__side{position:static}
+  .revs{grid-template-columns:repeat(2,1fr)}
+  .head{grid-template-columns:1fr;align-items:start}
+}
+@media (max-width:720px){
+  .util .wrap{min-height:0;padding-block:9px;font-size:12.5px;gap:14px}
+  .util .hide-s{display:none}
+  .bento,.revs,.foot__cards{grid-template-columns:1fr}
+  .b--hero,.b--green,.b--quote{grid-column:span 1}
+  .about__stack .tall{grid-row:span 1;aspect-ratio:4/3}
+  .scatter{min-height:0;padding-block:16px}
+  .scatter .tile,.scatter .plabel{display:none}
+  .scatter__strip{display:grid!important}
+  .scatter__mid{max-width:100%}
+  .svc{grid-template-columns:64px 1fr;gap:14px}
+  .svc__thumb{width:64px}
+  .svc__go{display:none}
+  .svc__no{right:16px}
+  .mobar{display:flex}
+  body{padding-bottom:78px}
+}
+.scatter__strip{display:none;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px;width:100%}
+.scatter__strip figure{margin:0;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow-1)}
+.scatter__strip img{width:100%;height:100%;object-fit:cover}
+
+/* ============================================================
+   INTERNAL PAGES  (added 2026-08-01)
+
+   Everything above this line is v2's homepage sheet, verbatim.
+   Everything below is what the INTERNAL pages need on top of it.
+
+   The rule for this section: the internal pages do not get new
+   art direction. They get v2's vocabulary applied to the band
+   sequence the :8089 build already ships. Where a band already
+   has a component up there (.card, .btn, .faq, .svc, .solo,
+   .wave, .ghost, .rule, .slot) it is REUSED, not reinvented.
+   ============================================================ */
+
+/* ---------- internal hero -------------------------------------------------
+   The homepage hero is 100svh, full bleed, with a load-in scale and parallax.
+   An internal hero that did the same thing would make every page feel like a
+   different homepage and push the actual answer below the fold - on a page
+   whose whole job is to answer one question. So: same devices, one notch
+   quieter. ~58vh, same scrim, same wave at the foot, plus a breadcrumb the
+   homepage has no use for. */
+.ihero{position:relative;min-height:clamp(400px,58vh,600px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate;padding-top:clamp(120px,16vh,180px)}
+.ihero__media{position:absolute;inset:0;z-index:0;overflow:hidden}
+.ihero__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;transform:scale(1.06);animation:heroIn 2.1s var(--ease) forwards}
+.ihero__scrim{position:absolute;inset:0;z-index:1;background:
+  linear-gradient(96deg, rgba(16,22,18,.9) 0%, rgba(16,22,18,.72) 40%, rgba(16,22,18,.22) 72%, rgba(16,22,18,.05) 100%),
+  linear-gradient(0deg, rgba(12,66,35,.5) 0%, rgba(12,66,35,0) 44%)}
+.ihero .wrap{position:relative;z-index:4;width:100%;padding-bottom:clamp(46px,6vw,86px)}
+.ihero__in{max-width:min(720px,68%)}
+.ihero h1{font-size:clamp(34px,4.6vw,72px);color:#fff;margin:.3em 0 0;text-shadow:0 2px 40px rgba(0,0,0,.3)}
+.ihero .eyebrow{color:rgba(255,255,255,.74);letter-spacing:.26em}
+.ihero__sub{margin-top:1.4em;max-width:52ch;color:rgba(255,255,255,.86);font-size:var(--t-lead);font-weight:300;line-height:1.6}
+.ihero__acts{margin-top:2em;display:flex;gap:13px;flex-wrap:wrap;align-items:center}
+
+/* A GREEN hero, for the pages that have no photograph worth carrying: the two
+   hubs, the team page, contact. Same geometry, the band gradient instead of a
+   picture, and the ghost word doing the work the photo would have done. */
+.ihero--green{background:
+  radial-gradient(80% 120% at 88% 4%, rgba(110,196,47,.22) 0%, rgba(110,196,47,0) 56%),
+  linear-gradient(158deg,#17743F 0%,#126736 46%,#0C4A28 100%);
+  min-height:clamp(320px,44vh,470px)}
+.ihero--green .ihero__in{max-width:min(820px,84%)}
+
+/* breadcrumb */
+.crumb{display:flex;align-items:center;gap:.55em;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.62);margin-bottom:1.5em}
+.crumb a:hover{color:#fff}
+.crumb i{font-style:normal;opacity:.5}
+.crumb b{font-weight:400;color:rgba(255,255,255,.9)}
+
+/* the three trust chips the built pages already carry under the H1 */
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:1.7em}
+.chip{display:inline-flex;align-items:center;gap:.6em;font-size:13.5px;font-weight:500;color:#fff;
+  background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px);
+  border-radius:var(--r-pill);padding:.6em 1.1em;white-space:nowrap}
+.chip svg{flex:none;color:var(--g-lite)}
+
+/* ---------- the "short answer" card ---------------------------------------
+   The built page opens the body with an unstyled paragraph labelled "The short
+   answer". It is the single most useful block on the page and it currently
+   looks like nothing. Given a card, a lime rule and the eyebrow, it becomes
+   the thing the eye lands on. */
+.answer{position:relative;background:#fff;border:1px solid var(--stroke-2);border-radius:var(--r);
+  box-shadow:var(--shadow-1);padding:clamp(24px,2.6vw,42px) clamp(22px,2.4vw,40px);
+  padding-left:clamp(26px,2.8vw,44px);overflow:hidden}
+.answer::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--g-lite)}
+.answer p{font-family:Merriweather,Georgia,serif;font-size:clamp(17px,1.35vw,21px);line-height:1.65;font-weight:300}
+.answer .eyebrow{margin-bottom:.85em}
+
+/* ---------- long-form body with a pinned contents rail ---------------------
+   Reuses the services band's sticky-side grammar (.svc__grid / .svc__side).
+   The built page is one 8000px column with four H2s in it and no way to see
+   its own shape. */
+.body__grid{display:grid;grid-template-columns:minmax(0,.32fr) minmax(0,1fr);gap:clamp(28px,4vw,72px);align-items:start}
+.body__rail{position:sticky;top:clamp(96px,12vh,132px)}
+.toc{list-style:none;margin:1.2em 0 0;padding:0;display:flex;flex-direction:column;gap:.1em;
+  border-left:1px solid var(--stroke)}
+.toc a{display:block;padding:.62em 0 .62em 1.15em;margin-left:-1px;font-size:14.5px;color:var(--ink-soft);
+  border-left:2px solid transparent;transition:color .3s var(--ease),border-color .3s var(--ease)}
+.toc a:hover{color:var(--g-band)}
+.toc a.on{color:var(--g-band);border-left-color:var(--g-lite);font-weight:500}
+.rail__cta{margin-top:2em;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+
+.prose{max-width:70ch}
+.prose h2{font-size:clamp(26px,2.7vw,42px);margin-top:2.1em;scroll-margin-top:clamp(90px,12vh,130px)}
+.prose h2:first-child{margin-top:0}
+.prose p{margin-top:1.1em;color:var(--ink-soft);line-height:1.8}
+.prose > p:first-of-type{margin-top:1.2em}
+/* A bullet list is where a lifted page most obviously reads as a lifted page:
+   browser default discs, tight leading, no relationship to the palette. */
+.prose ul{list-style:none;margin:1.5em 0 0;padding:0;display:flex;flex-direction:column;gap:.85em}
+.prose ul li{position:relative;padding-left:2.1em;color:var(--ink-soft);line-height:1.7}
+.prose ul li::before{content:'';position:absolute;left:0;top:.62em;width:11px;height:11px;border-radius:50%;
+  background:rgba(110,196,47,.28);box-shadow:inset 0 0 0 3px var(--g-band)}
+.prose__note{margin-top:1.7em;font-size:14.5px;color:var(--ink-soft);border-top:1px solid var(--stroke);padding-top:1.3em;font-style:italic}
+
+/* ---------- the evidence callout ------------------------------------------
+   Cite-or-blank made visible. The badge states the strength of the claim, the
+   source is named in full underneath, and neither is decoration that can be
+   dropped in translation. */
+.cite{margin-top:2.4em;border-radius:var(--r);overflow:hidden;background:
+  radial-gradient(90% 130% at 92% 0%, rgba(110,196,47,.2) 0%, rgba(110,196,47,0) 60%),
+  linear-gradient(154deg,#17743F 0%,#126736 52%,#0C4A28 100%);color:#fff;
+  padding:clamp(24px,2.4vw,38px);position:relative}
+.cite__badge{display:inline-flex;align-items:center;gap:.5em;font-size:11.5px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--g-lite);background:rgba(110,196,47,.16);border:1px solid rgba(110,196,47,.4);
+  border-radius:var(--r-pill);padding:.42em .95em}
+.cite p{margin-top:1.1em;color:rgba(255,255,255,.9);font-size:clamp(16px,1.2vw,18.5px);line-height:1.7;max-width:62ch}
+.cite__src{margin-top:1.4em;padding-top:1.1em;border-top:1px solid rgba(255,255,255,.16);
+  font-size:12.5px;color:rgba(255,255,255,.62);line-height:1.6}
+.cite__src a{color:var(--g-lite);text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- 3-up benefits (service pages) ---------------------------------- */
+.bens{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ben{padding:clamp(24px,2.2vw,34px);display:flex;flex-direction:column;gap:.75em}
+.ben__n{font-family:Merriweather,serif;font-weight:900;font-size:clamp(30px,2.6vw,42px);line-height:1;
+  letter-spacing:-.04em;color:rgba(18,103,54,.16)}
+.ben h3{font-size:var(--t-h3)}
+.ben p{font-size:15px;color:var(--ink-soft);line-height:1.7}
+.ben::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--g-lite);
+  transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease)}
+.ben:hover::after{transform:scaleX(1)}
+
+/* ---------- numbered process ----------------------------------------------
+   Borrowing the bento's big-number vocabulary (.b__n) rather than inventing a
+   second numeral treatment. The connecting rule is the same lime as the wave. */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2vw,30px);position:relative}
+.steps::before{content:'';position:absolute;left:0;right:0;top:26px;height:2px;
+  background:linear-gradient(90deg,rgba(110,196,47,.5),rgba(110,196,47,.14));z-index:0}
+.step{position:relative;z-index:1}
+.step__n{width:54px;height:54px;border-radius:50%;background:var(--g-band);color:#fff;display:grid;place-items:center;
+  font-family:Merriweather,serif;font-weight:900;font-size:20px;box-shadow:0 0 0 8px var(--paper-2)}
+.sec:not(.sec--paper) .step__n{box-shadow:0 0 0 8px #fff}
+.step h3{font-size:clamp(17px,1.35vw,21px);margin-top:1.1em}
+.step p{font-size:14.5px;color:var(--ink-soft);line-height:1.7;margin-top:.5em}
+
+/* ---------- hub grid (conditions / services indexes) -----------------------
+   21 cards on /conditions/ and 14 on /services/. The built version is a flat
+   3-up of identical white boxes. Same grid, but each card gets the arrow
+   affordance from .svc__go and a lime edge on hover, so a long grid still has
+   somewhere for the eye to travel. */
+.hub{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.hcard{display:flex;flex-direction:column;gap:.6em;padding:clamp(22px,2vw,30px);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s var(--ease)}
+.hcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-2);border-color:rgba(110,196,47,.55)}
+.hcard h3{font-size:clamp(17px,1.3vw,20px)}
+.hcard p{font-size:14.5px;color:var(--ink-soft);line-height:1.65;flex:1}
+.hcard__go{display:inline-flex;align-items:center;gap:.5em;margin-top:.7em;font-size:13.5px;font-weight:500;
+  color:var(--g-band)}
+.hcard__go svg{transition:transform .4s var(--ease)}
+.hcard:hover .hcard__go svg{transform:translateX(5px)}
+/* the alphabet jump bar: 21 items is past the point where scanning is free */
+.jump{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:clamp(26px,3vw,44px)}
+.jump a{font-size:13.5px;font-weight:500;color:var(--ink-soft);background:#fff;border:1px solid var(--stroke-2);
+  border-radius:var(--r-pill);padding:.5em 1.05em;box-shadow:var(--shadow-1);transition:all .3s var(--ease)}
+.jump a:hover,.jump a.on{background:var(--g-band);border-color:var(--g-band);color:#fff}
+
+/* ---------- related cards ("You might also look at") ----------------------- */
+.rel{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rcard{position:relative;min-height:210px;border-radius:var(--r);overflow:hidden;display:flex;align-items:flex-end;
+  box-shadow:var(--shadow-1)}
+.rcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.rcard:hover img{transform:scale(1.07)}
+.rcard::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,32,19,.92) 8%,rgba(9,32,19,.4) 58%,rgba(9,32,19,.08) 100%)}
+.rcard__in{position:relative;z-index:2;padding:clamp(18px,1.7vw,26px);color:#fff}
+.rcard__in h3{color:#fff;font-size:clamp(17px,1.3vw,21px)}
+.rcard__in p{color:rgba(255,255,255,.78);font-size:14px;margin-top:.4em;line-height:1.6}
+
+/* ---------- team roster (the /us/ page, N>1) -------------------------------
+   v2's team band has two states: SOLO (a designed green panel, no photo) and
+   SCATTER (only once a client supplies photography). The /us/ page needs a
+   third: a roster of 2-6 people where photos may or may not exist per person.
+   So the portrait panel from .solo is reused per card, at card scale, and the
+   READ MORE accordion the built page already has stays. */
+.roster{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,26px)}
+.mem{display:flex;flex-direction:column}
+.mem__ph{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-1)}
+.mem__ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.mem:hover .mem__ph img{transform:scale(1.05)}
+.mem__slot{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;display:grid;place-items:center;
+  background:linear-gradient(158deg,var(--g-mid),var(--g-band) 58%,var(--g-deep));box-shadow:var(--shadow-1)}
+.mem__mono{font-family:Merriweather,serif;font-weight:900;font-size:clamp(42px,5vw,74px);color:rgba(255,255,255,.17);
+  line-height:1;letter-spacing:-.05em}
+.mem__wave{position:absolute;left:0;right:0;bottom:0;height:34%;opacity:.22;pointer-events:none}
+.mem__wave svg{position:absolute;bottom:0;left:0;width:100%;height:100%;fill:var(--g-lite)}
+.mem__note{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:1em 1.1em;
+  background:linear-gradient(0deg,rgba(9,32,19,.88),rgba(9,32,19,0));color:rgba(255,255,255,.9);font-size:12px;line-height:1.5}
+.mem__role{display:block;font-size:var(--t-eyebrow);font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--g-mid);margin-top:1.4em}
+.mem h3{font-size:clamp(19px,1.5vw,25px);margin-top:.3em}
+.mem__bio{font-size:14.5px;color:var(--ink-soft);line-height:1.7;margin-top:.75em}
+.mem details{border:0;background:transparent;box-shadow:none;margin-top:.5em}
+.mem details summary{padding:.7em 0;font-family:'Work Sans',sans-serif;font-size:13.5px;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--g-band);gap:9px}
+.mem details summary::after{width:22px;height:22px;background-size:10px}
+.mem details[open]{box-shadow:none}
+.mem__more{font-size:14.5px;color:var(--ink-soft);line-height:1.7;padding-bottom:.5em}
+
+/* ---------- contact / form -------------------------------------------------
+   The built /contact-us/ and /special/ pages are a bare Breakdance form on
+   white. Same fields, same order, given the palette. */
+.contact__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,4vw,64px);align-items:start}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:.5em}
+.field--full{grid-column:span 2}
+.field label{font-size:13px;font-weight:500;letter-spacing:.04em;color:var(--ink-soft)}
+.field label i{font-style:normal;color:var(--g-mid)}
+.field input,.field textarea{
+  font-family:'Work Sans',sans-serif;font-size:15.5px;color:var(--ink);background:#fff;
+  border:1px solid var(--stroke);border-radius:var(--r);padding:.95em 1.1em;width:100%;
+  transition:border-color .3s var(--ease),box-shadow .3s var(--ease)}
+.field textarea{resize:vertical;min-height:130px;line-height:1.6}
+.field input:focus,.field textarea:focus{outline:0;border-color:var(--g-mid);box-shadow:0 0 0 4px rgba(46,139,87,.13)}
+.form__act{grid-column:span 2;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:.4em}
+.form__act small{font-size:12.5px;color:var(--ink-soft);max-width:36ch;line-height:1.5}
+.info{display:flex;flex-direction:column;gap:11px}
+.info__row{display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid var(--stroke-2);
+  border-radius:var(--r);padding:1.15em 1.25em;box-shadow:var(--shadow-1);font-size:15px}
+.info__row .ic{width:36px;height:36px;border-radius:50%;background:rgba(18,103,54,.1);color:var(--g-band);
+  display:grid;place-items:center;flex:none}
+.info__row small{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:.2em}
+.info .hours li{border-bottom-color:var(--stroke)}
+.info .hours span{color:var(--ink-soft)}
+.info .mapslot{background:linear-gradient(150deg,rgba(18,103,54,.09),rgba(18,103,54,.03));
+  border-color:rgba(18,103,54,.28);color:var(--ink-soft)}
+
+/* ---------- shared internal CTA foot -------------------------------------- */
+.endcta{text-align:center}
+.endcta h2{font-size:var(--t-h2);max-width:20ch;margin-inline:auto}
+.endcta .lead{margin-top:1.2em;max-width:52ch;margin-inline:auto}
+.endcta__acts{margin-top:2.2em;display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+
+/* ---------- responsive ----------------------------------------------------- */
+@media (max-width:1080px){
+  .body__grid,.contact__grid{grid-template-columns:1fr}
+  .body__rail{position:static;margin-bottom:1.5em}
+  .toc{flex-direction:row;flex-wrap:wrap;border-left:0;border-top:1px solid var(--stroke);padding-top:.8em;gap:6px}
+  .toc a{border-left:0;border-bottom:2px solid transparent;padding:.5em .2em;margin-left:0}
+  .toc a.on{border-left:0;border-bottom-color:var(--g-lite)}
+  .bens,.hub,.rel,.roster{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr);row-gap:34px}
+  .steps::before{display:none}
+  .ihero__in{max-width:100%}
+  .ihero__scrim{background:linear-gradient(0deg,rgba(16,22,18,.93) 10%,rgba(16,22,18,.62) 52%,rgba(16,22,18,.3) 100%)}
+}
+@media (max-width:720px){
+  .bens,.hub,.rel,.roster,.steps,.form{grid-template-columns:1fr}
+  .field--full,.form__act{grid-column:span 1}
+  .ihero{min-height:0;padding-top:clamp(104px,20vh,150px)}
+  .prose h2{margin-top:1.7em}
+}
+
+/* ============================================================
+   /special/ - THE NEW PATIENT OFFER PAGE
+
+   Highest-stakes page on the site and the easiest to overlook:
+   `bookingLink()` falls back to `/special/`, so for any client
+   with no `brand.booking_url` EVERY booking CTA on all 57 pages
+   lands here.
+
+   `lift-special.mjs` emits TWO STATES and both ship, so both are
+   styled here rather than only the pretty one:
+     A. record.offers[] present -> a grid of offer cards, each
+        button opening a NATIVE BD POPUP that carries the form.
+     B. record.offers empty     -> a plain booking page: same
+        eyebrow, different H1, the form inline, no invented offer.
+   The state switch on the mockup is v2's own .teamswitch, reused.
+   ============================================================ */
+
+.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
+.offer{position:relative;display:flex;flex-direction:column;padding:clamp(26px,2.4vw,38px) clamp(24px,2.2vw,34px);overflow:hidden}
+/* the lime rule is the card's own, not a hover state - these are the page's
+   primary objects and they should read as such standing still */
+.offer::before{content:'';position:absolute;left:0;right:0;top:0;height:4px;background:var(--g-lite)}
+.offer h3{font-size:clamp(20px,1.7vw,27px)}
+/* A complimentary offer HAS NO PRICE and the emitter omits the element rather
+   than rendering an empty one. So the price is a real optional slot here too,
+   never a dash or a zero. */
+.offer__price{font-family:Merriweather,serif;font-weight:900;letter-spacing:-.03em;line-height:1;
+  font-size:clamp(34px,3.4vw,52px);color:var(--g-band);margin-top:.42em}
+.offer__price small{display:inline-block;font-family:'Work Sans',sans-serif;font-weight:500;font-size:14px;
+  letter-spacing:0;color:var(--ink-soft);margin-left:.5em}
+.offer__free{display:inline-flex;align-items:center;gap:.5em;margin-top:.7em;font-family:Merriweather,serif;
+  font-weight:900;font-size:clamp(22px,2vw,30px);letter-spacing:-.02em;color:var(--g-band)}
+.offer__word{font-size:15px;color:var(--ink-soft);line-height:1.7;margin-top:1em}
+.offer__inc{list-style:none;margin:1.3em 0 0;padding:0;display:flex;flex-direction:column;gap:.7em;
+  border-top:1px solid var(--stroke-2);padding-top:1.3em}
+.offer__inc li{position:relative;padding-left:1.85em;font-size:14.5px;color:var(--ink-soft);line-height:1.6}
+.offer__inc li::before{content:'';position:absolute;left:0;top:.36em;width:15px;height:15px;border-radius:50%;
+  background:rgba(110,196,47,.22) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.3l2.6 2.6L10 3.5' fill='none' stroke='%23126736' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center no-repeat}
+.offer .btn{margin-top:auto;align-self:stretch;justify-content:center;margin-top:1.7em}
+.offer__fine{font-size:12px;color:var(--ink-soft);margin-top:1em;line-height:1.5}
+
+/* ---- the popup the button opens ----
+   Native Breakdance Popup on the real build (resolved by TITLE at write time,
+   "Offer 1"/"Offer 2"/...). Modelled here so the button actually does
+   something and the whole path can be judged, not just the card. */
+.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.on{display:flex}
+.modal__veil{position:absolute;inset:0;background:rgba(9,22,14,.62);backdrop-filter:blur(5px)}
+.modal__box{position:relative;z-index:2;width:min(560px,100%);max-height:88vh;overflow:auto;background:#fff;
+  border-radius:var(--r);box-shadow:var(--shadow-2);padding:clamp(26px,2.6vw,40px)}
+.modal__box h3{font-size:clamp(22px,2vw,30px);margin-top:.35em}
+.modal__x{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:1px solid var(--stroke);
+  background:#fff;color:var(--ink-soft);cursor:pointer;display:grid;place-items:center;transition:background .3s var(--ease)}
+.modal__x:hover{background:var(--paper-2);color:var(--ink)}
+.modal .form{margin-top:1.6em}
+
+@media (max-width:1080px){ .offers{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:720px){  .offers{grid-template-columns:1fr} }
+
+/* ---- SINGLE OFFER: the common case, and now the page's default -----------
+   (John, 2026-08-01: "most offices are only gonna have one offer, so giving
+   them a choice isn't really going to work very well.")
+
+   One offer rendered through the multi-offer grid is a lonely card in a third
+   of the width, under a heading that tells you to pick one. So the single
+   case gets its own layout: the offer IS the page, stated once at full size,
+   with the request form sitting right beside it.
+
+   ⚠️ AND NO POPUP. The popup exists to disambiguate WHICH offer you clicked.
+   With one offer there is nothing to disambiguate, so it is a click in front
+   of the form for no reason. Inline form, one screen, no modal. */
+.soffer{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(28px,4vw,72px);align-items:start}
+.soffer__badge{display:inline-flex;align-items:center;gap:.55em;font-size:12px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--g-band);background:rgba(18,103,54,.09);border:1px solid rgba(18,103,54,.2);
+  border-radius:var(--r-pill);padding:.5em 1.05em}
+.soffer h2{font-size:clamp(30px,3.6vw,54px);margin-top:.5em}
+/* the money line, at the size a single offer earns */
+.soffer .offer__free{font-size:clamp(28px,2.8vw,42px);margin-top:.6em}
+.soffer .offer__price{font-size:clamp(42px,4.4vw,68px);margin-top:.35em}
+.soffer__word{font-size:var(--t-lead);font-weight:300;color:var(--ink-soft);line-height:1.6;margin-top:1.1em;max-width:46ch}
+.soffer .offer__inc{margin-top:1.8em;padding-top:1.6em;gap:.9em;max-width:46ch}
+.soffer .offer__inc li{font-size:15.5px;padding-left:2.1em}
+.soffer .offer__inc li::before{width:18px;height:18px;top:.3em;background-size:11px}
+.soffer__fine{margin-top:1.6em;font-size:13px;color:var(--ink-soft);line-height:1.6;max-width:46ch}
+
+/* the form, given card weight so it reads as the thing to do next */
+.soffer__form{background:#fff;border:1px solid var(--stroke-2);border-radius:var(--r);box-shadow:var(--shadow-2);
+  padding:clamp(24px,2.4vw,38px);position:relative;overflow:hidden}
+.soffer__form::before{content:'';position:absolute;left:0;right:0;top:0;height:4px;background:var(--g-lite)}
+.soffer__form h3{font-size:clamp(19px,1.6vw,25px)}
+.soffer__form > p{font-size:14.5px;color:var(--ink-soft);line-height:1.6;margin-top:.6em}
+.soffer__form .form{margin-top:1.5em}
+
+@media (max-width:1080px){ .soffer{grid-template-columns:1fr} }

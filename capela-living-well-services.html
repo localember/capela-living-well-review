@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Our Services - Living Well</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=' js';</script>
+<link rel="stylesheet" href="sage.css">
+<style>
+/* Preview only. sage.css is byte-identical to the mockup's. */
+.brand__logo{height:56px;width:auto;display:block}
+.brand__logo--dark{display:none}
+.nav.is-stuck .brand__logo--light{display:none}
+.nav.is-stuck .brand__logo--dark{display:block}
+
+/* NAV FIT: second nav action ("Existing Patients", added 2026-08-11) costs the
+   link row ~220px, which made "Who We Are" and "Patient Forms" wrap onto two
+   lines below roughly 1500px. The links now never wrap, and between the mobile
+   breakpoint and 1500px their padding and size tighten to make the room.
+   sage.css stays byte-identical; this is preview-only, like the logo rules. */
+.brand{flex:none}
+.nav__links a{white-space:nowrap}
+@media (min-width:1081px) and (max-width:1500px){
+  .nav__links{gap:0}
+  .nav__links a{padding-inline:.5em;font-size:14.5px}
+}
+/* Below 1250px the row cannot hold logo + six links + two buttons: the links
+   already wrapped there BEFORE this button existed, and with it the logo got
+   squeezed to nothing. So the existing-patient button steps aside below 1250,
+   and the footer contact card carries the same link at every width, which is
+   also how it is reached on mobile. The nowrap + tightening above means the
+   1081-1250 band now holds one clean line, which it never did before. */
+@media (max-width:1250px){ .nav__cta .btn-ghost{display:none} }
+</style>
+<style>/* Visible placeholders for facts not yet confirmed (emit.py ph()). */
+.le-ph{display:inline-block;padding:.1em .45em;border:1.5px dashed #b7791f;border-radius:4px;background:#fff7e6;color:#7a4b00;font:600 13px/1.4 system-ui,sans-serif;letter-spacing:0;text-transform:none;vertical-align:middle}
+.le-ph--block{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;min-height:120px}
+</style>
+<style>/* Client palette over Sage green (emit.py palette_css). */
+:root{--g-band:#5d7156;--g-mid:#7a8f72;--g-lite:#a5b79c;--g-lite-txt:#dde8d7;--g-deep:#3c4a37}
+.sec--green{background:radial-gradient(80% 120% at 88% 6%, rgba(165,183,156,.20) 0%, rgba(165,183,156,0) 58%),linear-gradient(158deg,#6b8063 0%,#5d7156 46%,#46573f 100%)}
+.ihero--green{background:radial-gradient(80% 120% at 88% 4%, rgba(165,183,156,.22) 0%, rgba(165,183,156,0) 56%),linear-gradient(158deg,#6b8063 0%,#5d7156 46%,#46573f 100%)}
+.cite{background:radial-gradient(90% 130% at 92% 0%, rgba(165,183,156,.2) 0%, rgba(165,183,156,0) 60%),linear-gradient(154deg,#6b8063 0%,#5d7156 52%,#46573f 100%)}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HUB / INDEX - covers BOTH /conditions/ (21 cards) and
+     /services/ (14 cards). Same band sequence on the build, same
+     card, same closing CTA; only the card count and the H1 differ.
+     The conditions hub is shown because it is the harder case:
+     21 items is past the point where a flat grid can be scanned,
+     which is why the A-Z index below exists and the services hub
+     would not need one.
+
+     GREEN hero rather than a photograph. A hub page has no single
+     subject, and the build's own answer here was a stock image
+     that did not mean anything. The band gradient plus the ghost
+     word carries it, and it varies the rhythm of the set.
+     ============================================================ -->
+
+<div class="util">
+  <div class="wrap">
+    <a href="https://www.google.com/maps/search/?api=1&query=Living+Well%2C+5225+Cleveland+Rd%2C+Suite+A2%2C+Wooster%2C+OH+44691" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 5225 Cleveland Rd, Suite A2 <span class="le-ph">[suite number to confirm (A or A2)]</span>, Wooster</a>
+    <a href="tel:3303453336"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.4-1.2a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg> (330) 345-3336</a>
+    <span class="spacer"></span>
+    <span class="hide-s">Open Monday, Wednesday and Thursday</span>
+    <a href="https://www.facebook.com/livingwellwooster/" target="_blank" rel="noopener" class="soc" aria-label="Facebook"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg></a>
+    <a href="https://www.instagram.com/livingwell_wooster/" target="_blank" rel="noopener" class="soc" aria-label="Instagram"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/></svg></a>
+  </div>
+</div>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav__inner">
+      <a href="index.html" class="brand" aria-label="Living Well"><span class="le-ph">[logo to confirm: Logo.png or Spine Logo.png]</span> <span class="le-brandtxt">Living Well</span></a>
+      <div class="nav__links">
+        <a href="index.html">Home</a><a href="capela-living-well-about.html">Who We Are</a><a href="capela-living-well-services.html" class="on">Services</a><a href="capela-living-well-contact.html">Contact</a>
+      </div>
+      <div class="nav__cta">
+        <a href="capela-living-well-special.html" class="btn btn-ghost" target="_blank" rel="noopener">Existing Patients <span class="le-ph">[booking link needed]</span></a>
+        <a href="capela-living-well-special.html" class="btn btn-lite">Schedule an appointment</a>
+        <button class="nav__burger" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="ihero ihero--green on-dark">
+  <div class="ghost ghost--r" style="right:-3%;top:14%">Services</div>
+  <div class="wrap">
+    <div class="ihero__in">
+      <nav class="crumb reveal" style="--d:0"><a href="index.html">Home</a><i>/</i><b>Services</b></nav>
+      <span class="eyebrow reveal" style="--d:1">Services we offer</span>
+      <h1><span class="mask"><span style="--d:2">Services we offer</span></span><span class="mask"><span style="--d:3">with in <em style="font-style:normal;color:var(--g-lite)">Wooster</em></span></span></h1>
+      <span class="rule"></span>
+      <p class="ihero__sub reveal" style="--d:5">Whatever brought you in, care starts the same way: find why it hurts, then build a simple plan around how you move. Explore the conditions we see most.</p>
+    </div>
+  </div>
+  <div class="wave" style="--wave-end:#fff">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M1440 276.8s-255.057-1.964-432-1.54c-26.047.061-51.843 15.76-73.44 15.94-30.357.252-54.058-14.95-70.56-14.4-30.211 1.008-48 25.2-72 21.6-24-3.6-48-28.8-72-28.8s-48 25.2-72 28.8c-24 3.6-41.789-20.592-72-21.6-16.769-.559-42.412 14.64-73.44 14.388-21.623-.175-44.532-15.871-70.56-15.932C254.828 274.847 0 276.8 0 276.8V320h1440v-43.2Z"/></svg>
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M1440 276.8s-255.057-1.964-432-1.54c-26.047.061-51.843 15.76-73.44 15.94-30.357.252-54.058-14.95-70.56-14.4-30.211 1.008-48 25.2-72 21.6-24-3.6-48-28.8-72-28.8s-48 25.2-72 28.8c-24 3.6-41.789-20.592-72-21.6-16.769-.559-42.412 14.64-73.44 14.388-21.623-.175-44.532-15.871-70.56-15.932C254.828 274.847 0 276.8 0 276.8V320h1440v-43.2Z"/></svg>
+  </div>
+</header>
+
+<section class="sec grain">
+  <div class="wrap">
+
+    <!-- A-Z index. Pure anchors, no script: each letter jumps to the first
+         card starting with it. 21 cards is past the point where a flat grid
+         can be scanned, which is the only reason this exists - the services
+         hub, at 14, does not get one. -->
+    
+
+    <div class="hub">
+      <a class="card hcard reveal" id="s-weight-loss" style="--d:0" href="capela-living-well-service-weight-loss.html"><h3>Weight Loss</h3><p>A coached program built on food, habits, and the metabolic picture behind them.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="card hcard reveal" id="s-functional-medicine" style="--d:1" href="capela-living-well-service-functional-medicine.html"><h3>Functional Medicine</h3><p>Proper testing and a full history, to find what is actually driving how you feel.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="card hcard reveal" id="s-red-light-therapy" style="--d:2" href="capela-living-well-service-red-light-therapy.html"><h3>Red Light Therapy</h3><p>Red and near-infrared light to support recovery in a sore area, without medication and without downtime.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="card hcard reveal" id="s-nutrition" style="--d:3" href="capela-living-well-service-nutrition.html"><h3>Nutrition</h3><p>Straightforward nutrition guidance for energy and recovery, without fads or supplements.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="sec sec--green on-dark sec--wavebottom">
+  <div class="ghost ghost--r" style="right:-2%;top:8%">Book</div>
+  <div class="wrap">
+    <div class="endcta reveal">
+      <span class="eyebrow">Next step</span>
+      <h2 style="margin-top:.3em">Not sure where you fit?</h2>
+      <p class="lead">New patients are welcome. Come as you are, we will take it from there.</p>
+      <div class="endcta__acts">
+        <a href="capela-living-well-special.html" class="btn btn-lite">Schedule an appointment</a>
+        <a href="tel:3303453336" class="btn btn-ghost">(330) 345-3336</a>
+      </div>
+      <p style="margin-top:1.1em;font-size:15px;opacity:.85">Tell us a good time and we'll call to confirm.</p>
+    </div>
+  </div>
+  <div class="wave" style="--wave-end:var(--paper-2)">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M1440 276.8s-255.057-1.964-432-1.54c-26.047.061-51.843 15.76-73.44 15.94-30.357.252-54.058-14.95-70.56-14.4-30.211 1.008-48 25.2-72 21.6-24-3.6-48-28.8-72-28.8s-48 25.2-72 28.8c-24 3.6-41.789-20.592-72-21.6-16.769-.559-42.412 14.64-73.44 14.388-21.623-.175-44.532-15.871-70.56-15.932C254.828 274.847 0 276.8 0 276.8V320h1440v-43.2Z"/></svg>
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M1440 276.8s-255.057-1.964-432-1.54c-26.047.061-51.843 15.76-73.44 15.94-30.357.252-54.058-14.95-70.56-14.4-30.211 1.008-48 25.2-72 21.6-24-3.6-48-28.8-72-28.8s-48 25.2-72 28.8c-24 3.6-41.789-20.592-72-21.6-16.769-.559-42.412 14.64-73.44 14.388-21.623-.175-44.532-15.871-70.56-15.932C254.828 274.847 0 276.8 0 276.8V320h1440v-43.2Z"/></svg>
+  </div>
+</section>
+
+<footer class="foot" id="foot">
+  <div class="wrap">
+    <div class="foot__megawrap"><h2 class="foot__mega" id="mega">Contact <em>Us</em></h2></div>
+    <div class="foot__cards">
+      <div class="card fc fc--g reveal" style="--d:0"><h3>Living Well</h3><ul><li>5225 Cleveland Rd, Suite A2 <span class="le-ph">[suite number to confirm (A or A2)]</span><br>Wooster, OH</li><li><a href="tel:3303453336">(330) 345-3336</a></li><li>Open Monday, Wednesday and Thursday</li><li><a href="capela-living-well-special.html" target="_blank" rel="noopener">Existing patient booking <span class="le-ph">[booking link needed]</span></a></li></ul></div>
+      <div class="card fc reveal" style="--d:1"><h3>Services</h3><ul><li><a href="capela-living-well-services.html">Weight Loss</a></li><li><a href="capela-living-well-service-functional-medicine.html">Functional Medicine</a></li><li><a href="capela-living-well-service-red-light-therapy.html">Red Light Therapy</a></li><li><a href="capela-living-well-service-nutrition.html">Nutrition</a></li></ul></div>
+
+    </div>
+    <div class="foot__base"><span>&copy; 2026 Living Well</span><span class="spacer"></span><span>Preview for client review. Not yet live. <span class="le-ph">[colours assumed, to confirm with the practice]</span></span></div>
+  </div>
+</footer>
+
+<div class="mobar">
+  <a href="tel:3303453336" class="btn btn-ghost">Call</a>
+  <a href="capela-living-well-special.html" class="btn btn-primary">Schedule an appointment</a>
+</div>
+
+<script src="sage.js"></script>
+</body>
+</html>
