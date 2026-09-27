@@ -45,6 +45,9 @@
 .le-ph{display:inline-block;padding:.1em .45em;border:1.5px dashed #b7791f;border-radius:4px;background:#fff7e6;color:#7a4b00;font:600 13px/1.4 system-ui,sans-serif;letter-spacing:0;text-transform:none;vertical-align:middle}
 .le-ph--block{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;min-height:120px}
 </style>
+<style>/* Two-card footer (emit.py footer). */
+@media (min-width:721px){.foot__cards--two{grid-template-columns:repeat(2,1fr)}}
+</style>
 <style>/* Client palette over Sage green (emit.py palette_css). */
 :root{--g-band:#5d7156;--g-mid:#7a8f72;--g-lite:#a5b79c;--g-lite-txt:#dde8d7;--g-deep:#3c4a37}
 .sec--green{background:radial-gradient(80% 120% at 88% 6%, rgba(165,183,156,.20) 0%, rgba(165,183,156,0) 58%),linear-gradient(158deg,#6b8063 0%,#5d7156 46%,#46573f 100%)}
@@ -88,20 +91,14 @@
 <!-- ============ HERO: full bleed, full height ============ -->
 <header class="hero" id="hero">
   <div class="hero__media">
-    <!-- Demo-1: iStock, purchased by John and loaded into our catalog
-         (confirmed 2026-08-01). Licensed fleet stock, free to use across clients.
-         Measured against the iStock candidate it wins on every axis that matters
-         for a hero: native 16:9 (no crop fight), left-lower busy 9.0 vs 38.1,
-         wave-zone busy 15.1 vs 42.8, and a left side that holds a UNIFORM
-         111-119 luminance instead of swinging 225 to 128. Uniform mid-tone is
-         what lets Sage's own dark scrim and white type work unchanged. -->
-    <img class="hero__img" id="heroImg" src="assets/Demo-1.webp" alt="A family together outdoors on a summer evening" fetchpriority="high">
+    <!-- The practice's own photograph (client layer sage.photos.hero). -->
+    <img class="hero__img" id="heroImg" src="assets/photo-team-outdoor.webp" alt="The Living Well team together outdoors" style="object-position:60% 50%" fetchpriority="high">
   </div>
   <div class="hero__scrim"></div>
 
   <div class="wrap">
     <div class="hero__in">
-      <span class="eyebrow reveal" style="--d:0">Chiropractor Wooster</span>
+      <span class="eyebrow reveal" style="--d:0">Functional Medicine Wooster</span>
       <h1>
         <span class="mask"><span style="--d:1">Feel Good,</span></span>
         <span class="mask"><span style="--d:2">Live Better</span></span>
@@ -167,18 +164,18 @@
     <div class="head">
       <div class="reveal">
         <span class="eyebrow">Our Expertise</span>
-        <h2>Why Choose a Chiropractor in Wooster?</h2>
+        <h2>Why Choose Living Well in Wooster?</h2>
         <span class="rule"></span>
       </div>
       <div class="head__note reveal" style="--d:1">
-        <p class="muted" style="font-size:15.5px">Choosing a Wooster chiropractor means a natural, hands-on approach to your health. By supporting your body's own ability to recover, our care helps you take an active role in feeling better.</p>
+        <p class="muted" style="font-size:15.5px">Our care looks for the underlying causes of how you feel rather than simply managing symptoms. A full history, proper testing and a personalized plan help you take an active role in feeling better.</p>
       </div>
     </div>
 
     <div class="bento">
       <article class="card b b--hero reveal" style="--d:0">
-        <figure><img src="assets/Demo-2.webp" alt="Patients of Living Well" loading="lazy">
-          <figcaption><h3>The root cause, not the symptom</h3><p>We look for what is actually driving the pain, then explain what we find before anything else happens.</p></figcaption>
+        <figure><img src="assets/photo-lw-wellness-plan.webp" alt="Walking through a functional wellness plan at Living Well in Wooster" loading="lazy">
+          <figcaption><h3>The root cause, not the symptom</h3><p>We look for what is actually driving how you feel, then explain what we find before anything else happens.</p></figcaption>
         </figure>
       </article>
       <article class="card b b--stat reveal" style="--d:1">
@@ -364,17 +361,17 @@
     <div class="faq">
       <div class="reveal">
         <span class="eyebrow">FAQ</span>
-        <h2 style="margin-top:.3em">Common Questions About Chiropractic Care</h2>
+        <h2 style="margin-top:.3em">Common Questions About Functional Medicine and Weight Loss</h2>
         <span class="rule"></span>
         <p class="lead" style="margin-top:1.3em">Answers to some of the questions we hear most from patients in Wooster.</p>
         <a href="tel:3303453336" class="btn btn-primary" style="margin-top:1.9em">Ask us directly</a>
       </div>
       <div class="faq__list reveal" style="--d:1">
-        <details open><summary>What happens at a first visit?</summary><div class="faq__a">We take a full history, talk through what you are feeling and when it started, then examine before anything else happens. You will hear what we found and what we recommend before you decide on care.</div></details>
+        <details open><summary>What happens at a first visit?</summary><div class="faq__a">We take a full history and talk through what you are feeling and when it started before anything else happens. You will hear what we found and what we recommend before you decide on care.</div></details>
         <details><summary>Do I need a referral to come in?</summary><div class="faq__a">No. You can book directly with our office.</div></details>
-        <details><summary>Are all patients adjusted the same way?</summary><div class="faq__a">No. The approach is chosen for your body, your history and your comfort, and it changes as you progress.</div></details>
-        <details><summary>Are chiropractic adjustments safe?</summary><div class="faq__a">Becoming a chiropractor takes years of doctoral study and supervised clinical training. Gentle, precise adjustments are the core of the work, aimed at restoring alignment so the nerves and muscles can do their job.</div></details>
-        <details><summary>How does a chiropractor help with sciatica?</summary><div class="faq__a">By looking for what is compressing or irritating the nerve rather than only easing the pain, then addressing that cause.</div></details>
+        <details><summary>How is this different from just going to my doctor?</summary><div class="faq__a">It is not in competition with your doctor. A physician is looking for disease that needs medical management, and is very good at that. This looks at the space before that, where you feel unwell but nothing has crossed a diagnostic threshold, and it has the appointment length to go through your history properly. Plenty of our patients keep seeing both, and that is the right arrangement.</div></details>
+        <details><summary>How long before I feel different?</summary><div class="faq__a">Honestly, it varies, and anyone who gives you a number for this is guessing. Some people notice a difference in energy or digestion within a few weeks of changing the obvious things. Where something has been building for years, it takes longer. We set a review point at the start so there is a defined moment to look at whether this is working, rather than an open-ended commitment.</div></details>
+        <details><summary>How much weight will I lose?</summary><div class="faq__a">We do not give a number before meeting you, and we would be wary of anyone who does. It depends on where you are starting from, what your sleep and stress look like, and what you can realistically keep doing. After the first consultation we can talk honestly about what is reasonable for you.</div></details>
       </div>
     </div>
   </div>
@@ -384,7 +381,7 @@
 <footer class="foot" id="foot">
   <div class="wrap">
     <div class="foot__megawrap"><h2 class="foot__mega" id="mega">Contact <em>Us</em></h2></div>
-    <div class="foot__cards">
+    <div class="foot__cards foot__cards--two">
       <div class="card fc fc--g reveal" style="--d:0"><h3>Living Well</h3><ul><li>5225 Cleveland Rd, Suite A2 <span class="le-ph">[suite number to confirm (A or A2)]</span><br>Wooster, OH 44691</li><li><a href="tel:3303453336">(330) 345-3336</a></li><li>Open Monday, Wednesday and Thursday</li><li><a href="capela-living-well-special.html" target="_blank" rel="noopener">Existing patient booking <span class="le-ph">[booking link needed]</span></a></li></ul></div>
       <div class="card fc reveal" style="--d:1"><h3>Services</h3><ul><li><a href="capela-living-well-service-weight-loss.html">Weight Loss</a></li><li><a href="capela-living-well-service-functional-medicine.html">Functional Medicine</a></li><li><a href="capela-living-well-service-red-light-therapy.html">Red Light Therapy</a></li><li><a href="capela-living-well-service-nutrition.html">Nutrition</a></li></ul></div>
 
