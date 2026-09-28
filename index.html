@@ -48,34 +48,24 @@
 .brand__icon{width:42px;height:42px;border-radius:50%;background:#fff;object-fit:contain;padding:3px;flex:none;box-shadow:0 1px 6px rgba(0,0,0,.18)}
 @media (max-width:720px){.brand__icon{width:36px;height:36px}}
 </style>
-<style>/* Hero variants (emit.py HERO_VARIANT_CSS). */
-.hero--va,.hero--vb{--hv-h1:clamp(30px,3.3vw,50px)}
-.hero--va h1,.hero--vb h1{font-size:var(--hv-h1);margin-top:.25em;line-height:1.08}
-.hero--va h1 .mask,.hero--vb h1 .mask{display:inline-block;margin-right:.24em}
-.hero--va .rule,.hero--vb .rule{display:none}
-.hero--va .hero__sub,.hero--vb .hero__sub{margin-top:.75em;font-size:clamp(15px,1.05vw,17px);max-width:48ch}
-.hero--va .hero__acts,.hero--vb .hero__acts{margin-top:1.1em;gap:10px}
-.hero--va .hero__acts .btn,.hero--vb .hero__acts .btn{padding:.72em 1.3em;font-size:14px}
-.hero--va .hero__acts+p,.hero--vb .hero__acts+p,.hero--va .scrollcue,.hero--vb .scrollcue{display:none}
-.hero--va{align-items:flex-end}
-.hero--va .hero__scrim{background:linear-gradient(180deg,rgba(16,22,18,.62) 0%,rgba(16,22,18,.28) 12%,rgba(16,22,18,0) 24%),linear-gradient(0deg,rgba(16,22,18,.9) 0%,rgba(16,22,18,.62) 20%,rgba(16,22,18,0) 46%),linear-gradient(90deg,rgba(16,22,18,.38) 0%,rgba(16,22,18,0) 42%)}
-.hero--va .wrap{padding-block:0 calc(var(--wave-h) + clamp(14px,2.4vh,34px))}
-.hero--va .hero__in{max-width:min(560px,100%)}
-.hero--vb{display:block;min-height:0;background:var(--g-band)}
-.hero--vb .hero__media{position:relative;inset:auto;height:clamp(420px,70vh,740px)}
-.hero--vb .hero__img{inset:0;height:100%;animation:none;transform:none!important}
-.hero--vb .hero__scrim{background:linear-gradient(180deg,rgba(16,22,18,.62) 0%,rgba(16,22,18,.28) 12%,rgba(16,22,18,0) 26%)}
-.hero--vb .wrap{padding-block:0 calc(var(--wave-h) + 20px);margin-top:clamp(-110px,-7vw,-60px)}
-.hero--vb .hero__in{max-width:min(760px,100%);background:var(--g-band);border-radius:22px;padding:clamp(22px,2.4vw,34px) clamp(22px,2.8vw,42px);box-shadow:0 22px 50px rgba(0,0,0,.2)}
+<style>/* Compact hero (emit.py HERO_COMPACT_CSS). */
+.hero--compact{--hv-h1:clamp(30px,3.3vw,50px)}
+.hero--compact h1{font-size:var(--hv-h1);margin-top:.25em;line-height:1.08}
+.hero--compact h1 .mask{display:inline-block;margin-right:.24em}
+.hero--compact .rule{display:none}
+.hero--compact .hero__sub{margin-top:.75em;font-size:clamp(15px,1.05vw,17px);max-width:48ch}
+.hero--compact .hero__acts{margin-top:1.1em;gap:10px}
+.hero--compact .hero__acts .btn{padding:.72em 1.3em;font-size:14px}
+.hero--compact .hero__acts+p,.hero--compact .scrollcue{display:none}
+.hero--compact{align-items:flex-end}
+.hero--compact .hero__scrim{background:linear-gradient(180deg,rgba(16,22,18,.62) 0%,rgba(16,22,18,.28) 12%,rgba(16,22,18,0) 24%),linear-gradient(0deg,rgba(16,22,18,.9) 0%,rgba(16,22,18,.62) 20%,rgba(16,22,18,0) 46%),linear-gradient(90deg,rgba(16,22,18,.38) 0%,rgba(16,22,18,0) 42%)}
+.hero--compact .wrap{padding-block:0 calc(var(--wave-h) + clamp(14px,2.4vh,34px))}
+.hero--compact .hero__in{max-width:min(560px,100%)}
 @media (max-width:720px){
-  .hero--va{min-height:88svh}
-  .hero--va .hero__img{object-position:58% 30%!important}
-  .hero--va .hero__scrim{background:linear-gradient(180deg,rgba(16,22,18,.55) 0%,rgba(16,22,18,0) 16%),linear-gradient(0deg,rgba(16,22,18,.94) 0%,rgba(16,22,18,.7) 30%,rgba(16,22,18,0) 56%)}
-  .hero--va .hero__sub,.hero--vb .hero__sub{font-size:15px}
-  .hero--vb .hero__media{height:auto;aspect-ratio:3/2;margin-top:0}
-  .hero--vb .hero__img{object-position:50% 45%!important}
-  .hero--vb .wrap{margin-top:-24px}
-  .hero--vb .hero__in{border-radius:18px}
+  .hero--compact{min-height:88svh}
+  .hero--compact .hero__img{object-position:58% 30%!important}
+  .hero--compact .hero__scrim{background:linear-gradient(180deg,rgba(16,22,18,.55) 0%,rgba(16,22,18,0) 16%),linear-gradient(0deg,rgba(16,22,18,.94) 0%,rgba(16,22,18,.7) 30%,rgba(16,22,18,0) 56%)}
+  .hero--compact .hero__sub{font-size:15px}
 }
 </style>
 <style>/* Compact utility bar on phones (emit.py UTIL_COMPACT_CSS). */
@@ -121,7 +111,7 @@
 </nav>
 
 <!-- ============ HERO: full bleed, full height ============ -->
-<header class="hero hero--va" id="hero">
+<header class="hero hero--compact" id="hero">
   <div class="hero__media">
     <!-- The practice's own photograph (client layer sage.photos.hero). -->
     <img class="hero__img" id="heroImg" src="assets/photo-team-outdoor.webp" alt="The Living Well team together outdoors" style="object-position:60% 50%" fetchpriority="high">
@@ -156,7 +146,6 @@
     <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M1440 276.8s-255.057-1.964-432-1.54c-26.047.061-51.843 15.76-73.44 15.94-30.357.252-54.058-14.95-70.56-14.4-30.211 1.008-48 25.2-72 21.6-24-3.6-48-28.8-72-28.8s-48 25.2-72 28.8c-24 3.6-41.789-20.592-72-21.6-16.769-.559-42.412 14.64-73.44 14.388-21.623-.175-44.532-15.871-70.56-15.932C254.828 274.847 0 276.8 0 276.8V320h1440v-43.2Z"/></svg>
   </div>
 </header>
-<script>/* preview only: ?hero=a or ?hero=b switches the hero layout */(function(){var m=/[?&]hero=([ab])\b/.exec(location.search),h=document.getElementById('hero');if(m&&h){h.className=h.className.replace(/hero--v[ab]/,'hero--v'+m[1]);}})();</script>
 
 
 
