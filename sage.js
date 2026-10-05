@@ -124,6 +124,76 @@
     });
   });
 
+
+  /* ---- mobile nav panel ----
+     HTML has .nav__burger but no handler historically; this builds a slide-down
+     panel from the same .nav__links (+ Schedule CTA) so every page stays in sync. */
+  var burger = $('.nav__burger');
+  if (burger && nav) {
+    var panel = document.createElement('div');
+    panel.className = 'nav__panel';
+    panel.id = 'nav-panel';
+    panel.setAttribute('hidden', '');
+    panel.setAttribute('role', 'dialog');
+    panel.setAttribute('aria-modal', 'true');
+    panel.setAttribute('aria-label', 'Site menu');
+
+    var panelInner = document.createElement('div');
+    panelInner.className = 'nav__panel-inner';
+    var linkSrc = $('.nav__links', nav);
+    if (linkSrc) {
+      $$('a', linkSrc).forEach(function(a){
+        var c = a.cloneNode(true);
+        c.classList.remove('on');
+        panelInner.appendChild(c);
+      });
+    }
+    var cta = $('.nav__cta .btn', nav);
+    if (cta) {
+      var ctaClone = cta.cloneNode(true);
+      ctaClone.classList.add('nav__panel-cta');
+      panelInner.appendChild(ctaClone);
+    }
+    panel.appendChild(panelInner);
+    document.body.appendChild(panel);
+
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-controls', 'nav-panel');
+
+    function setOpen(open){
+      if (open) {
+        panel.removeAttribute('hidden');
+        panel.classList.add('is-open');
+        burger.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('nav-open');
+      } else {
+        panel.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('nav-open');
+        // hide after transition
+        window.setTimeout(function(){
+          if (!panel.classList.contains('is-open')) panel.setAttribute('hidden', '');
+        }, 280);
+      }
+    }
+    function isOpen(){ return panel.classList.contains('is-open'); }
+
+    burger.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(!isOpen());
+    });
+    panel.addEventListener('click', function(e){
+      if (e.target === panel) setOpen(false);
+    });
+    $$('a', panel).forEach(function(a){
+      a.addEventListener('click', function(){ setOpen(false); });
+    });
+    addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && isOpen()) setOpen(false);
+    });
+  }
+
   /* ---- offer popups (/special/) ----
      Stands in for the native Breakdance Popup the real button opens. On the
      build the popup is a separate post resolved BY TITLE at write time

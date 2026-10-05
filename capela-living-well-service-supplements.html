@@ -14,8 +14,8 @@
 /* Preview only. sage.css is byte-identical to the mockup's. */
 .brand__logo{height:56px;width:auto;display:block}
 .brand__logo--dark{display:none}
-.nav.is-stuck .brand__logo--light{display:none}
-.nav.is-stuck .brand__logo--dark{display:block}
+.nav.is-stuck .brand__logo--light,.nav.nav--solid .brand__logo--light{display:none}
+.nav.is-stuck .brand__logo--dark,.nav.nav--solid .brand__logo--dark{display:block}
 
 /* NAV FIT: second nav action ("Existing Patients", added 2026-08-11) costs the
    link row ~220px, which made "Who We Are" and "Patient Forms" wrap onto two
@@ -52,7 +52,7 @@
 .ihero--green{background:radial-gradient(80% 120% at 88% 4%, rgba(165,183,156,.22) 0%, rgba(165,183,156,0) 56%),linear-gradient(158deg,#6b8063 0%,#5d7156 46%,#46573f 100%)}
 .cite{background:radial-gradient(90% 130% at 92% 0%, rgba(165,183,156,.2) 0%, rgba(165,183,156,0) 60%),linear-gradient(154deg,#6b8063 0%,#5d7156 52%,#46573f 100%)}
 .cred--g,.plabel--g{background:rgba(93,113,86,.09);border-color:rgba(93,113,86,.2)}
-.nav.is-stuck .nav__links a:hover,.nav.is-stuck .nav__links a.on{background:rgba(93,113,86,.09)}
+.nav.is-stuck .nav__links a:hover,.nav.is-stuck .nav__links a.on,.nav.nav--solid .nav__links a:hover,.nav.nav--solid .nav__links a.on{background:rgba(93,113,86,.09)}
 .info__row .ic,summary::after{background-color:rgba(93,113,86,.1)}
 .cta__row .ic,.offer__inc li::before{background-color:rgba(165,183,156,.22)}
 </style>
@@ -82,12 +82,12 @@
   </div>
 </div>
 
-<nav class="nav" id="nav">
+<nav class="nav nav--solid" id="nav">
   <div class="wrap">
     <div class="nav__inner">
       <a href="index.html" class="brand" aria-label="Living Well"><img class="brand__icon" src="assets/brand-spine-icon.webp" alt="" aria-hidden="true"> <span class="le-brandtxt">Living Well</span></a>
       <div class="nav__links">
-        <a href="index.html">Home</a><a href="capela-living-well-about.html">Who We Are</a><a href="capela-living-well-services.html" class="on">Services</a><a href="capela-living-well-new-patient-paperwork.html">Patient Forms</a><a href="capela-living-well-service-supplements.html">Supplements</a><a href="capela-living-well-contact.html">Contact</a>
+        <a href="index.html">Home</a><a href="capela-living-well-about.html">Who We Are</a><a href="capela-living-well-services.html" class="on">Services</a><a href="capela-living-well-contact.html">Contact</a>
       </div>
       <div class="nav__cta">
         <a href="capela-living-well-special.html" class="btn btn-lite">Schedule an appointment</a>
@@ -106,10 +106,9 @@
       <span class="eyebrow reveal" style="--d:1">What we offer</span>
       <h1><span class="mask"><span style="--d:2">Supplements</span></span><span class="mask"><span style="--d:3">in <em style="font-style:normal;color:var(--g-lite)">Wooster</em></span></span></h1>
       <span class="rule"></span>
-      <p class="ihero__sub reveal" style="--d:5">Guided supplementation and the Supplement Scan in Wooster, as part of your Living Well plan.</p>
+      <p class="ihero__sub reveal" style="--d:5">Guided supplementation in Wooster, as part of your Living Well plan.</p>
       <div class="chips reveal" style="--d:6">
         <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> New patients welcome</span>
-        <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 11V5.5a1.5 1.5 0 013 0V11m0 0V4.5a1.5 1.5 0 013 0V11m0 0V6.5a1.5 1.5 0 013 0V14a7 7 0 01-7 7h-1a7 7 0 01-7-7v-3a1.5 1.5 0 013 0"/></svg>  Supplement Scan in about 15 minutes</span>
         <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Serving Wooster</span>
       </div>
       <div class="ihero__acts reveal" style="--d:7">
@@ -137,7 +136,6 @@
         <span class="eyebrow">On this page</span>
         <nav><ul class="toc">
           <li><a href="#guided-supplementation">Guided supplementation</a></li>
-          <li><a href="#the-supplement-scan">The Supplement Scan</a></li>
           <li><a href="#brands-we-work-with">Brands we work with</a></li>
           <li><a href="#order-from-home">Order from home</a></li>
           <li><a href="#cost">Cost</a></li>
@@ -153,7 +151,7 @@
       <div>
         <div class="answer reveal">
           <span class="eyebrow">The short answer</span>
-          <p>Supplements can be one part of your plan at Living Well. Our team helps you work out which ones fit you, and the Supplement Scan is one way to start that conversation.</p>
+          <p>Supplements can be one part of your plan at Living Well. Our team helps you work out which ones fit you, and explains why any recommendation is made.</p>
         </div>
 
         <div class="prose reveal" style="--d:1">
@@ -161,10 +159,6 @@
           
           <h2 id="guided-supplementation">Guided supplementation</h2>
           <p>Guided supplementation is part of our weight loss program, alongside red light therapy, Styku body scans and personalized nutrition. When a supplement is recommended, we explain why.</p>
-          
-          <h2 id="the-supplement-scan">The Supplement Scan</h2>
-          <p>The Supplement Scan uses a Zyto device and takes about 15 minutes. You rest your hand on a pad and chat with our team while it runs. It is painless. Afterward we go over the report with you and the supplements it points to.</p>
-          
           <h2 id="brands-we-work-with">Brands we work with</h2>
           <ul>
             <li>Barlow Herbal</li>
@@ -183,7 +177,7 @@
           <p class="prose__acts" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:1.3em"><a class="btn btn-primary" href="https://us.fullscript.com/welcome/dcapela/store-start" target="_blank" rel="noopener">Order on Fullscript</a></p>
           
           <h2 id="cost">Cost</h2>
-          <p>We will go over any costs with you before you decide. Call us with questions about a scan or a product.</p>
+          <p>We will go over any costs with you before you decide. Call us with questions about a product.</p>
         </div>
       </div>
 
@@ -224,9 +218,9 @@
         <a href="tel:3303453336" class="btn btn-primary" style="margin-top:1.9em">Ask us directly</a>
       </div>
       <div class="faq__list reveal" style="--d:1">
-        <details open><summary>How long does the Supplement Scan take?</summary><div class="faq__a">About 15 minutes.</div></details>
-        <details><summary>Does the scan hurt?</summary><div class="faq__a">No. You rest your hand on a pad and talk with our team while it runs.</div></details>
-        <details><summary>Who explains the results?</summary><div class="faq__a">Our team goes over the report with you and talks through the supplements it points to.</div></details>
+        <details open><summary>Do I need supplements to start care?</summary><div class="faq__a">Not always. Supplements are one tool we may recommend as part of a wider plan, and only when they fit what we find.</div></details>
+        <details><summary>Which brands do you work with?</summary><div class="faq__a">Barlow Herbal, Biogenetix, Ortho Molecular Products, New Wave Weight Loss, Premier Research Labs, and Vitalleo.</div></details>
+        <details><summary>Who explains what is recommended?</summary><div class="faq__a">Our team walks you through why a supplement is suggested and how it fits your plan.</div></details>
         <details><summary>Can I order supplements online?</summary><div class="faq__a">Yes. Premier Research Labs through Client Direct, or through our Fullscript dispensary. Both links are on this page.</div></details>
       </div>
     </div>
@@ -277,7 +271,7 @@
     <div class="foot__megawrap"><h2 class="foot__mega" id="mega">Contact <em>Us</em></h2></div>
     <div class="foot__cards foot__cards--two">
       <div class="card fc fc--g reveal" style="--d:0"><h3>Living Well</h3><ul><li>5225 Cleveland Rd, Suite A2<br>Wooster, OH</li><li><a href="tel:3303453336">(330) 345-3336</a></li><li>Open Monday, Wednesday and Thursday</li><li><a href="capela-living-well-new-patient-paperwork.html">New patient paperwork</a></li></ul></div>
-      <div class="card fc reveal" style="--d:1"><h3>Services</h3><ul><li><a href="capela-living-well-services.html">Weight Loss</a></li><li><a href="capela-living-well-service-functional-medicine.html">Functional Medicine</a></li><li><a href="capela-living-well-service-red-light-therapy.html">Red Light Therapy</a></li><li><a href="capela-living-well-service-nutrition.html">Nutrition</a></li><li><a href="capela-living-well-service-supplements.html">Supplements</a></li></ul></div>
+      <div class="card fc reveal" style="--d:1"><h3>Services</h3><ul><li><a href="capela-living-well-service-functional-medicine.html">Functional Medicine</a></li><li><a href="capela-living-well-service-weight-loss.html">Weight Loss</a></li><li><a href="capela-living-well-service-red-light-therapy.html">Red Light Therapy</a></li><li><a href="capela-living-well-service-nutrition.html">Nutrition</a></li><li></li></ul></div>
 
     </div>
     <div class="foot__base"><span>&copy; 2026 Living Well</span><span class="spacer"></span><span>Preview for client review. Not yet live.</span></div>

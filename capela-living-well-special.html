@@ -14,8 +14,8 @@
 /* Preview only. sage.css is byte-identical to the mockup's. */
 .brand__logo{height:56px;width:auto;display:block}
 .brand__logo--dark{display:none}
-.nav.is-stuck .brand__logo--light{display:none}
-.nav.is-stuck .brand__logo--dark{display:block}
+.nav.is-stuck .brand__logo--light,.nav.nav--solid .brand__logo--light{display:none}
+.nav.is-stuck .brand__logo--dark,.nav.nav--solid .brand__logo--dark{display:block}
 /* Lead form failure state. It has to be impossible to miss: the whole point of
    the delivery rule is that a submission that did not land is visible, and the
    patient is handed the phone number instead of a dead end. */
@@ -84,7 +84,7 @@
 .ihero--green{background:radial-gradient(80% 120% at 88% 4%, rgba(165,183,156,.22) 0%, rgba(165,183,156,0) 56%),linear-gradient(158deg,#6b8063 0%,#5d7156 46%,#46573f 100%)}
 .cite{background:radial-gradient(90% 130% at 92% 0%, rgba(165,183,156,.2) 0%, rgba(165,183,156,0) 60%),linear-gradient(154deg,#6b8063 0%,#5d7156 52%,#46573f 100%)}
 .cred--g,.plabel--g{background:rgba(93,113,86,.09);border-color:rgba(93,113,86,.2)}
-.nav.is-stuck .nav__links a:hover,.nav.is-stuck .nav__links a.on{background:rgba(93,113,86,.09)}
+.nav.is-stuck .nav__links a:hover,.nav.is-stuck .nav__links a.on,.nav.nav--solid .nav__links a:hover,.nav.nav--solid .nav__links a.on{background:rgba(93,113,86,.09)}
 .info__row .ic,summary::after{background-color:rgba(93,113,86,.1)}
 .cta__row .ic,.offer__inc li::before{background-color:rgba(165,183,156,.22)}
 </style>
@@ -102,12 +102,12 @@
   </div>
 </div>
 
-<nav class="nav" id="nav">
+<nav class="nav nav--solid" id="nav">
   <div class="wrap">
     <div class="nav__inner">
       <a href="index.html" class="brand" aria-label="Living Well"><img class="brand__icon" src="assets/brand-spine-icon.webp" alt="" aria-hidden="true"> <span class="le-brandtxt">Living Well</span></a>
       <div class="nav__links">
-        <a href="index.html">Home</a><a href="capela-living-well-about.html">Who We Are</a><a href="capela-living-well-services.html">Services</a><a href="capela-living-well-new-patient-paperwork.html">Patient Forms</a><a href="capela-living-well-service-supplements.html">Supplements</a><a href="capela-living-well-contact.html">Contact</a>
+        <a href="index.html">Home</a><a href="capela-living-well-about.html">Who We Are</a><a href="capela-living-well-services.html">Services</a><a href="capela-living-well-contact.html">Contact</a>
       </div>
       <div class="nav__cta">
         <a href="capela-living-well-special.html" class="btn btn-lite">Schedule an appointment</a>
@@ -180,6 +180,7 @@
             <div class="field"><label for="oln">Last name <i>*</i></label><input id="oln" name="last_name" type="text" autocomplete="family-name" required></div>
             <div class="field"><label for="oph">Phone <i>*</i></label><input id="oph" name="phone" type="tel" autocomplete="tel" required></div>
             <div class="field"><label for="oem">Email <i>*</i></label><input id="oem" name="email" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="odob">Date of birth <i>*</i></label><input id="odob" name="date_of_birth" type="date" autocomplete="bday" required></div>
             <div class="field field--full"><label for="opt">What day or time works best? <span style="font-weight:400;opacity:.7">(optional)</span></label><input id="opt" name="preferred_time" type="text" placeholder="For example, weekday mornings, or Thursday after 3"></div>
             <div class="field field--full"><label for="oms">What is going on? <i>*</i></label><textarea id="oms" name="message" required placeholder="A sentence is plenty. When did it start?"></textarea></div>
             <div class="field field--full">
@@ -246,7 +247,7 @@
     <div class="foot__megawrap"><h2 class="foot__mega" id="mega">Start <em>Here</em></h2></div>
     <div class="foot__cards foot__cards--two">
       <div class="card fc fc--g reveal" style="--d:0"><h3>Living Well</h3><ul><li>5225 Cleveland Rd, Suite A2<br>Wooster, OH</li><li><a href="tel:3303453336">(330) 345-3336</a></li><li>Open Monday, Wednesday and Thursday</li><li><a href="capela-living-well-new-patient-paperwork.html">New patient paperwork</a></li></ul></div>
-      <div class="card fc reveal" style="--d:1"><h3>Services</h3><ul><li><a href="capela-living-well-services.html">Weight Loss</a></li><li><a href="capela-living-well-service-functional-medicine.html">Functional Medicine</a></li><li><a href="capela-living-well-service-red-light-therapy.html">Red Light Therapy</a></li><li><a href="capela-living-well-service-nutrition.html">Nutrition</a></li><li><a href="capela-living-well-service-supplements.html">Supplements</a></li></ul></div>
+      <div class="card fc reveal" style="--d:1"><h3>Services</h3><ul><li><a href="capela-living-well-service-functional-medicine.html">Functional Medicine</a></li><li><a href="capela-living-well-service-weight-loss.html">Weight Loss</a></li><li><a href="capela-living-well-service-red-light-therapy.html">Red Light Therapy</a></li><li><a href="capela-living-well-service-nutrition.html">Nutrition</a></li><li></li></ul></div>
 
     </div>
     <div class="foot__base"><span>&copy; 2026 Living Well</span><span class="spacer"></span><span>Preview for client review. Not yet live.</span></div>
@@ -309,6 +310,7 @@
       last:  form.last_name.value.trim(),
       phone: form.phone.value.trim(),
       email: form.email.value.trim(),
+      dob:   form.date_of_birth.value.trim(),
       msg:   form.message.value.trim(),
       when:  form.preferred_time.value.trim()
     };
@@ -320,6 +322,7 @@
     if (f.email.indexOf('@') < 1 || f.email.indexOf('.', f.email.indexOf('@')) < 0) {
       return fail('That email address does not look right. Please check it.');
     }
+    if (!f.dob) { return fail('Please enter your date of birth.'); }
     if (!f.msg) { return fail('Please tell us briefly what is going on.'); }
 
     track('lead_form_attempt', { form_id: 'capela-living-well-new-patients', form_location: 'special' });
@@ -341,6 +344,7 @@
       'Last Name':  f.last,
       'Phone':      f.phone,
       'Email':      f.email,
+      'Date of Birth': f.dob,
       'Message':    f.msg,
       'Preferred Time': f.when,
       'Source':     'Website new patient page'

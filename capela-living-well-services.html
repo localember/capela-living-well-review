@@ -14,8 +14,8 @@
 /* Preview only. sage.css is byte-identical to the mockup's. */
 .brand__logo{height:56px;width:auto;display:block}
 .brand__logo--dark{display:none}
-.nav.is-stuck .brand__logo--light{display:none}
-.nav.is-stuck .brand__logo--dark{display:block}
+.nav.is-stuck .brand__logo--light,.nav.nav--solid .brand__logo--light{display:none}
+.nav.is-stuck .brand__logo--dark,.nav.nav--solid .brand__logo--dark{display:block}
 
 /* NAV FIT: second nav action ("Existing Patients", added 2026-08-11) costs the
    link row ~220px, which made "Who We Are" and "Patient Forms" wrap onto two
@@ -58,7 +58,7 @@
 .ihero--green{background:radial-gradient(80% 120% at 88% 4%, rgba(165,183,156,.22) 0%, rgba(165,183,156,0) 56%),linear-gradient(158deg,#6b8063 0%,#5d7156 46%,#46573f 100%)}
 .cite{background:radial-gradient(90% 130% at 92% 0%, rgba(165,183,156,.2) 0%, rgba(165,183,156,0) 60%),linear-gradient(154deg,#6b8063 0%,#5d7156 52%,#46573f 100%)}
 .cred--g,.plabel--g{background:rgba(93,113,86,.09);border-color:rgba(93,113,86,.2)}
-.nav.is-stuck .nav__links a:hover,.nav.is-stuck .nav__links a.on{background:rgba(93,113,86,.09)}
+.nav.is-stuck .nav__links a:hover,.nav.is-stuck .nav__links a.on,.nav.nav--solid .nav__links a:hover,.nav.nav--solid .nav__links a.on{background:rgba(93,113,86,.09)}
 .info__row .ic,summary::after{background-color:rgba(93,113,86,.1)}
 .cta__row .ic,.offer__inc li::before{background-color:rgba(165,183,156,.22)}
 </style>
@@ -91,12 +91,12 @@
   </div>
 </div>
 
-<nav class="nav" id="nav">
+<nav class="nav nav--solid" id="nav">
   <div class="wrap">
     <div class="nav__inner">
       <a href="index.html" class="brand" aria-label="Living Well"><img class="brand__icon" src="assets/brand-spine-icon.webp" alt="" aria-hidden="true"> <span class="le-brandtxt">Living Well</span></a>
       <div class="nav__links">
-        <a href="index.html">Home</a><a href="capela-living-well-about.html">Who We Are</a><a href="capela-living-well-services.html" class="on">Services</a><a href="capela-living-well-new-patient-paperwork.html">Patient Forms</a><a href="capela-living-well-service-supplements.html">Supplements</a><a href="capela-living-well-contact.html">Contact</a>
+        <a href="index.html">Home</a><a href="capela-living-well-about.html">Who We Are</a><a href="capela-living-well-services.html" class="on">Services</a><a href="capela-living-well-contact.html">Contact</a>
       </div>
       <div class="nav__cta">
         <a href="capela-living-well-special.html" class="btn btn-lite">Schedule an appointment</a>
@@ -133,11 +133,11 @@
     
 
     <div class="hub">
-      <a class="card hcard reveal" id="s-weight-loss" style="--d:0" href="capela-living-well-service-weight-loss.html"><h3>Weight Loss</h3><p>A coached program built on food, habits, and the metabolic picture behind them.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="card hcard reveal" id="s-functional-medicine" style="--d:1" href="capela-living-well-service-functional-medicine.html"><h3>Functional Medicine</h3><p>Proper testing and a full history, to find what is actually driving how you feel.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="card hcard reveal" id="s-functional-medicine" style="--d:0" href="capela-living-well-service-functional-medicine.html"><h3>Functional Medicine</h3><p>Proper testing and a full history, to find what is actually driving how you feel.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="card hcard reveal" id="s-weight-loss" style="--d:1" href="capela-living-well-service-weight-loss.html"><h3>Weight Loss</h3><p>A coached program built on food, habits, and the metabolic picture behind them.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       <a class="card hcard reveal" id="s-red-light-therapy" style="--d:2" href="capela-living-well-service-red-light-therapy.html"><h3>Red Light Therapy</h3><p>Red and near-infrared light to support recovery in a sore area, without medication and without downtime.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       <a class="card hcard reveal" id="s-nutrition" style="--d:3" href="capela-living-well-service-nutrition.html"><h3>Nutrition</h3><p>Straightforward nutrition guidance for energy and recovery.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="card hcard reveal" id="s-supplements" style="--d:4" href="capela-living-well-service-supplements.html"><h3>Supplements</h3><p>Guided supplementation and the Supplement Scan, as part of your plan.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="card hcard reveal" id="s-supplements" style="--d:4" href="capela-living-well-service-supplements.html"><h3>Supplements</h3><p>Guided supplementation as part of your plan, with brands you can order online.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -160,8 +160,7 @@
         <li class="card xsvc reveal" style="--d:3"><h3>Brain-based and vestibular exercises</h3><p>Exercises for the brain and the balance system.</p></li>
         <li class="card xsvc reveal" style="--d:0"><h3>Eyelights</h3><p>Light glasses used during brain-based exercises.</p></li>
         <li class="card xsvc reveal" style="--d:1"><h3>Styku body scan</h3><p>A 3D body scan that tracks shape and measurements.</p></li>
-        <li class="card xsvc reveal" style="--d:2"><h3>Supplement Scan</h3><p>A Zyto scan of about 15 minutes to help choose supplements. <a href="capela-living-well-service-supplements.html" style="color:var(--g-band);font-weight:500">See Supplements</a></p></li>
-        <li class="card xsvc reveal" style="--d:3"><h3>Lab testing</h3><p>Testing such as gut, hormone, toxin and nutrient panels.</p></li>
+<li class="card xsvc reveal" style="--d:3"><h3>Lab testing</h3><p>Testing such as gut, hormone, toxin and nutrient panels.</p></li>
     </ul>
   </div>
 </section>
@@ -192,7 +191,7 @@
     <div class="foot__megawrap"><h2 class="foot__mega" id="mega">Contact <em>Us</em></h2></div>
     <div class="foot__cards foot__cards--two">
       <div class="card fc fc--g reveal" style="--d:0"><h3>Living Well</h3><ul><li>5225 Cleveland Rd, Suite A2<br>Wooster, OH</li><li><a href="tel:3303453336">(330) 345-3336</a></li><li>Open Monday, Wednesday and Thursday</li><li><a href="capela-living-well-new-patient-paperwork.html">New patient paperwork</a></li></ul></div>
-      <div class="card fc reveal" style="--d:1"><h3>Services</h3><ul><li><a href="capela-living-well-services.html">Weight Loss</a></li><li><a href="capela-living-well-service-functional-medicine.html">Functional Medicine</a></li><li><a href="capela-living-well-service-red-light-therapy.html">Red Light Therapy</a></li><li><a href="capela-living-well-service-nutrition.html">Nutrition</a></li><li><a href="capela-living-well-service-supplements.html">Supplements</a></li></ul></div>
+      <div class="card fc reveal" style="--d:1"><h3>Services</h3><ul><li><a href="capela-living-well-service-functional-medicine.html">Functional Medicine</a></li><li><a href="capela-living-well-service-weight-loss.html">Weight Loss</a></li><li><a href="capela-living-well-service-red-light-therapy.html">Red Light Therapy</a></li><li><a href="capela-living-well-service-nutrition.html">Nutrition</a></li><li></li></ul></div>
 
     </div>
     <div class="foot__base"><span>&copy; 2026 Living Well</span><span class="spacer"></span><span>Preview for client review. Not yet live.</span></div>
