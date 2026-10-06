@@ -114,6 +114,8 @@ p{margin:0;text-wrap:pretty}
 .on-dark{color:#fff}
 .on-dark h1,.on-dark h2,.on-dark h3{color:#fff}
 .on-dark p{color:rgba(255,255,255,.8)}
+/* the form error box is a light pink panel, so it keeps its dark red text even inside an .on-dark band */
+.on-dark .lead-err,.on-dark p.lead-err{color:#8a1f1f}
 
 /* Sage's short green rule, drawn on entry */
 .rule{display:block;width:112px;height:5px;background:var(--g-lite);margin-top:.55em;border-radius:2px;transform-origin:left;transition:transform .9s var(--ease) .5s}
