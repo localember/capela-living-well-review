@@ -47,3 +47,13 @@ body.nav-open .nav .nav__burger{border-color:var(--stroke);background:#fff;color
 .nav__panel-inner a.nav__panel-sub::before{content:"";position:absolute;left:.3em;top:50%;width:.55em;height:1px;background:currentColor;opacity:.5}
 .nav__panel-inner a.on{background:rgba(0,0,0,.05);color:var(--g-band)}
 .nav__panel-inner a.nav__panel-parent.on{background:none;color:var(--g-band)}
+
+/* 5. Testimonials on phones (2026-10-06). The home and about pages pin
+      .revs to three columns in an inline style, which overrode sage.css's
+      own responsive steps, so on a phone three cards were squeezed side by
+      side and ran off the right edge with no way to scroll to them. Put the
+      responsive steps back, here because this file loads last. */
+@media (max-width:1080px){ section .revs{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:720px){ section .revs{grid-template-columns:minmax(0,1fr)} }
+.rev{min-width:0}
+.rev p{overflow-wrap:break-word}

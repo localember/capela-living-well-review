@@ -88,7 +88,7 @@
     <div class="nav__inner">
       <a href="index.html" class="brand" aria-label="Living Well"><img class="brand__icon" src="assets/brand-spine-icon.webp" alt="" aria-hidden="true"> <span class="le-brandtxt">Living Well</span></a>
       <div class="nav__links">
-        <a href="index.html">Home</a><div class="nav__dd"><a href="capela-living-well-about.html" class="nav__dd-top">Who We Are</a><button type="button" class="nav__dd-btn" aria-expanded="false" aria-controls="dd-who" aria-label="Show the Who We Are menu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="nav__dd-menu" id="dd-who"><a href="capela-living-well-about.html">Meet the Team</a><a href="capela-living-well-payment-options.html">Payment Options</a></div></div><a href="capela-living-well-services.html">Services</a><a href="capela-living-well-contact.html" class="on" aria-current="page">Contact</a>
+        <a href="index.html">Home</a><div class="nav__dd"><a href="capela-living-well-about.html" class="nav__dd-top">Who We Are</a><button type="button" class="nav__dd-btn" aria-expanded="false" aria-controls="dd-who" aria-label="Show the Who We Are menu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="nav__dd-menu" id="dd-who"><a href="capela-living-well-about.html">Meet the Team</a><a href="capela-living-well-payment-options.html">Payment Options</a></div></div><a href="capela-living-well-services.html">Services</a><a href="capela-living-well-service-functional-neurology.html">Functional Neurology</a><a href="capela-living-well-contact.html" class="on" aria-current="page">Contact</a>
       </div>
       <div class="nav__cta">
         <a href="capela-living-well-special.html" class="btn btn-lite">Schedule an appointment</a>
@@ -134,7 +134,6 @@
           <div class="field"><label for="ln">Last name <i>*</i></label><input id="ln" name="last_name" type="text" autocomplete="family-name" required></div>
           <div class="field"><label for="ph">Phone <i>*</i></label><input id="ph" name="phone" type="tel" autocomplete="tel" required></div>
           <div class="field"><label for="em">Email <i>*</i></label><input id="em" name="email" type="email" autocomplete="email" required></div>
-            <div class="field"><label for="dob">Date of birth <i>*</i></label><input id="dob" name="date_of_birth" type="date" autocomplete="bday" required></div>
           <div class="field field--full"><label for="pt">What day or time works best? <span style="font-weight:400;opacity:.7">(optional)</span></label><input id="pt" name="preferred_time" type="text" placeholder="For example, weekday mornings, or Thursday after 3"></div>
           <div class="field field--full"><label for="ms">Message <i>*</i></label><textarea id="ms" name="message" required placeholder="What is going on, and when did it start?"></textarea></div>
           <div class="field field--full">
@@ -222,7 +221,7 @@
     <div class="foot__megawrap"><h2 class="foot__mega" id="mega">Come <em>In</em></h2></div>
     <div class="foot__cards foot__cards--two">
       <div class="card fc fc--g reveal" style="--d:0"><h3>Living Well</h3><ul><li>5225 Cleveland Rd, Suite A2<br>Wooster, OH</li><li><a href="tel:3303453336">(330) 345-3336</a></li><li>Open Monday, Wednesday and Thursday</li><li><a href="capela-living-well-new-patient-paperwork.html">New patient paperwork</a></li><li><a href="capela-living-well-payment-options.html">Payment options</a></li></ul></div>
-      <div class="card fc reveal" style="--d:1"><h3>Services</h3><ul><li><a href="capela-living-well-service-functional-medicine.html">Functional Medicine</a></li><li><a href="capela-living-well-service-weight-loss.html">Weight Loss</a></li><li><a href="capela-living-well-service-red-light-therapy.html">Red Light Therapy</a></li><li><a href="capela-living-well-service-nutrition.html">Nutrition</a></li><li></li></ul></div>
+      <div class="card fc reveal" style="--d:1"><h3>Services</h3><ul><li><a href="capela-living-well-service-functional-medicine.html">Functional Medicine</a></li><li><a href="capela-living-well-service-functional-neurology.html">Functional Neurology</a></li><li><a href="capela-living-well-service-weight-loss.html">Weight Loss</a></li><li><a href="capela-living-well-service-red-light-therapy.html">Red Light Therapy</a></li><li><a href="capela-living-well-service-nutrition.html">Nutrition</a></li><li></li></ul></div>
 
     </div>
     <div class="foot__base"><span>&copy; 2026 Living Well</span><span class="spacer"></span><span>Preview for client review. Not yet live.</span></div>
@@ -285,7 +284,6 @@
       last:  form.last_name.value.trim(),
       phone: form.phone.value.trim(),
       email: form.email.value.trim(),
-      dob:   form.date_of_birth.value.trim(),
       msg:   form.message.value.trim(),
       when:  form.preferred_time.value.trim()
     };
@@ -297,7 +295,6 @@
     if (f.email.indexOf('@') < 1 || f.email.indexOf('.', f.email.indexOf('@')) < 0) {
       return fail('That email address does not look right. Please check it.');
     }
-    if (!f.dob) { return fail('Please enter your date of birth.'); }
     if (!f.msg) { return fail('Please tell us briefly what is going on.'); }
 
     track('lead_form_attempt', { form_id: 'capela-living-well-contact', form_location: 'contact' });
@@ -319,7 +316,6 @@
       'Last Name':  f.last,
       'Phone':      f.phone,
       'Email':      f.email,
-      'Date of Birth': f.dob,
       'Message':    f.msg,
       'Preferred Time': f.when,
       'Source':     'Website contact form'
