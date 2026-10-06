@@ -46,3 +46,4 @@ body.nav-open .nav .nav__burger{border-color:var(--stroke);background:#fff;color
 .nav__panel-inner a.nav__panel-sub{position:relative;margin-left:1.1em;padding-left:1.3em;font-size:16px;color:var(--ink-soft)}
 .nav__panel-inner a.nav__panel-sub::before{content:"";position:absolute;left:.3em;top:50%;width:.55em;height:1px;background:currentColor;opacity:.5}
 .nav__panel-inner a.on{background:rgba(0,0,0,.05);color:var(--g-band)}
+.nav__panel-inner a.nav__panel-parent.on{background:none;color:var(--g-band)}

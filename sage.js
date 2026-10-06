@@ -179,22 +179,24 @@
     var linkSrc = $('.nav__links', nav);
     if (linkSrc) {
       /* Top-level links clone as they are. A dropdown (.nav__dd) becomes its
-         top link followed by its sub-links, indented, so on a phone the
-         "Who We Are" entries are one tap away with nothing to expand. */
+         parent link followed by EVERY one of its sub-links, indented and in
+         the same order as the desktop dropdown (Who We Are > Meet the Team,
+         Payment Options), so phone and desktop menus match. The parent only
+         gets a text-colour cue when one of its children is the current page;
+         the child carries the full highlight. */
       [].slice.call(linkSrc.children).forEach(function(el){
         if (el.tagName === 'A') {
           panelInner.appendChild(el.cloneNode(true));
         } else if (el.classList.contains('nav__dd')) {
           var top = $('.nav__dd-top', el);
-          var topHref = top ? top.getAttribute('href') : null;
           if (top) {
             var tc = top.cloneNode(true);
-            tc.className = '';
+            tc.className = 'nav__panel-parent';
             if (top.classList.contains('on')) tc.classList.add('on');
+            tc.removeAttribute('aria-current');
             panelInner.appendChild(tc);
           }
           $$('.nav__dd-menu a', el).forEach(function(a){
-            if (a.getAttribute('href') === topHref) return;
             var sc = a.cloneNode(true);
             sc.classList.add('nav__panel-sub');
             panelInner.appendChild(sc);
