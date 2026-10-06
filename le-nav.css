@@ -1,0 +1,48 @@
+/* ============================================================
+   le-nav.css - header layout + "Who We Are" dropdown.
+   Preview only, added 2026-10-06. sage.css stays byte-identical
+   to the mockup; every header fix lives here instead.
+   ============================================================ */
+
+/* 1. The fixed nav sits BELOW the utility bar, never under it.
+      --util-h is measured by sage.js (the bar wraps on some widths);
+      44px is the bar's normal height and the no-JS fallback.
+      Living Well's solid nav used top:0, which put the whole nav
+      underneath the green utility bar. */
+:root{--util-h:44px}
+.nav,.nav.nav--solid{top:var(--util-h)}
+.nav.is-stuck,.nav.nav--solid.is-stuck{top:0}
+
+/* Keep the utility bar on one line on tablets so the nav keeps its place. */
+@media (max-width:1080px){ .util .hide-s{display:none} }
+
+/* 2. Burger hugs the right edge once the links collapse. */
+@media (max-width:1080px){ .nav__cta{margin-left:auto} }
+.brand{min-width:0}
+.brand .le-brandtxt{overflow:hidden;text-overflow:ellipsis}
+
+/* 3. Desktop dropdown */
+.nav__dd{position:relative;display:flex;align-items:center}
+.nav__dd::after{content:"";position:absolute;left:0;right:0;top:100%;height:14px}
+.nav__links .nav__dd-top{padding-right:.3em}
+.nav__dd-btn{display:grid;place-items:center;width:26px;height:30px;margin-left:-2px;padding:0;border:0;border-radius:var(--r-pill);background:none;color:rgba(255,255,255,.92);cursor:pointer;transition:transform .25s var(--ease),background .25s var(--ease)}
+.nav__dd-btn:hover,.nav__dd-btn:focus-visible{background:rgba(255,255,255,.16)}
+.nav.is-stuck .nav__dd-btn,.nav.nav--solid .nav__dd-btn{color:var(--ink-soft)}
+.nav.is-stuck .nav__dd-btn:hover,.nav.nav--solid .nav__dd-btn:hover{background:rgba(0,0,0,.05)}
+.nav__dd-btn svg{transition:transform .25s var(--ease)}
+.nav__dd:hover .nav__dd-btn svg,.nav__dd.is-open .nav__dd-btn svg{transform:rotate(180deg)}
+.nav__dd-menu{position:absolute;top:calc(100% + 10px);left:0;min-width:220px;padding:8px;display:flex;flex-direction:column;gap:2px;background:#fff;border:1px solid var(--stroke);border-radius:16px;box-shadow:var(--shadow-2);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .2s var(--ease),transform .2s var(--ease),visibility .2s;z-index:5}
+.nav__dd:hover .nav__dd-menu,.nav__dd:focus-within .nav__dd-menu,.nav__dd.is-open .nav__dd-menu{opacity:1;visibility:visible;transform:none}
+#nav .nav__dd-menu a{display:block;padding:.7em 1em;font-size:15px;font-weight:500;color:var(--ink);background:none;border-radius:10px;white-space:nowrap}
+#nav .nav__dd-menu a:hover,#nav .nav__dd-menu a:focus-visible{background:rgba(0,0,0,.05);color:var(--g-band)}
+#nav .nav__dd-menu a.on{background:rgba(0,0,0,.06);color:var(--g-band)}
+
+/* 4. Mobile panel: the nav stays clickable above the open panel (the burger
+      becomes the close button) and reads dark on the white sheet. */
+body.nav-open .nav{z-index:130;top:0;background:rgba(255,255,255,.98);box-shadow:none}
+body.nav-open .nav .brand{color:var(--ink)}
+body.nav-open .nav .nav__burger{border-color:var(--stroke);background:#fff;color:var(--ink)}
+.nav__panel-inner{padding-top:calc(env(safe-area-inset-top,0px) + var(--nav-h,72px) + 8px)}
+.nav__panel-inner a.nav__panel-sub{position:relative;margin-left:1.1em;padding-left:1.3em;font-size:16px;color:var(--ink-soft)}
+.nav__panel-inner a.nav__panel-sub::before{content:"";position:absolute;left:.3em;top:50%;width:.55em;height:1px;background:currentColor;opacity:.5}
+.nav__panel-inner a.on{background:rgba(0,0,0,.05);color:var(--g-band)}

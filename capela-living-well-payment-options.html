@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Thank you - Living Well</title>
+<title>Payment Options - Living Well, Wooster OH</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -42,6 +42,10 @@
    also how it is reached on mobile. The nowrap + tightening above means the
    1081-1250 band now holds one clean line, which it never did before. */
 @media (max-width:1250px){ .nav__cta .btn-ghost{display:none} }
+</style>
+<style>/* Visible placeholders for facts not yet confirmed (emit.py ph()). */
+.le-ph{display:inline-block;padding:.1em .45em;border:1.5px dashed #b7791f;border-radius:4px;background:#fff7e6;color:#7a4b00;font:600 13px/1.4 system-ui,sans-serif;letter-spacing:0;text-transform:none;vertical-align:middle}
+.le-ph--block{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;min-height:120px}
 </style>
 <style>/* Two-card footer (emit.py footer). */
 @media (min-width:721px){.foot__cards--two{grid-template-columns:repeat(2,1fr)}}
@@ -84,7 +88,7 @@
     <div class="nav__inner">
       <a href="index.html" class="brand" aria-label="Living Well"><img class="brand__icon" src="assets/brand-spine-icon.webp" alt="" aria-hidden="true"> <span class="le-brandtxt">Living Well</span></a>
       <div class="nav__links">
-        <a href="index.html">Home</a><div class="nav__dd"><a href="capela-living-well-about.html" class="nav__dd-top">Who We Are</a><button type="button" class="nav__dd-btn" aria-expanded="false" aria-controls="dd-who" aria-label="Show the Who We Are menu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="nav__dd-menu" id="dd-who"><a href="capela-living-well-about.html">Meet the Team</a><a href="capela-living-well-payment-options.html">Payment Options</a></div></div><a href="capela-living-well-services.html">Services</a><a href="capela-living-well-contact.html">Contact</a>
+        <a href="index.html">Home</a><div class="nav__dd"><a href="capela-living-well-about.html" class="nav__dd-top on">Who We Are</a><button type="button" class="nav__dd-btn" aria-expanded="false" aria-controls="dd-who" aria-label="Show the Who We Are menu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="nav__dd-menu" id="dd-who"><a href="capela-living-well-about.html">Meet the Team</a><a href="capela-living-well-payment-options.html" class="on" aria-current="page">Payment Options</a></div></div><a href="capela-living-well-services.html">Services</a><a href="capela-living-well-contact.html">Contact</a>
       </div>
       <div class="nav__cta">
         <a href="capela-living-well-special.html" class="btn btn-lite">Schedule an appointment</a>
@@ -94,29 +98,38 @@
   </div>
 </nav>
 
-<!-- ============================================================
-     THANK YOU. Reached ONLY after a lead POST returned a readable
-     2xx (see the delivery block in capela-living-well-contact.html). Never on a
-     timer and never optimistically, so arriving here means the
-     request reached GoHighLevel.
-     ============================================================ -->
 <header class="ihero ihero--green on-dark">
-  <div class="ghost ghost--r" style="right:-3%;top:18%">Thanks</div>
   <div class="wrap">
     <div class="ihero__in">
-      <nav class="crumb reveal" style="--d:0"><a href="index.html">Home</a><i>/</i><b>Thank you</b></nav>
-      <span class="eyebrow reveal" style="--d:1">Message received</span>
-      <h1><span class="mask"><span style="--d:2">Thank <em style="font-style:normal;color:var(--g-lite)">you</em></span></span></h1>
-      <span class="rule"></span>
-      <p class="ihero__sub reveal" style="--d:5">We have your details. Someone from the office will call you to confirm a time that works for you. If you would rather not wait, the number is <a href="tel:3303453336" style="color:inherit;font-weight:600">(330) 345-3336</a>.</p>
+      <nav class="crumb reveal" style="--d:0"><a href="index.html">Home</a><i>/</i><a href="capela-living-well-about.html">Who we are</a><i>/</i><b>Payment options</b></nav>
+      <span class="eyebrow reveal" style="--d:1">Paying for care</span>
+      <h1><span class="mask"><span style="--d:2">Payment</span></span><span class="mask"><span style="--d:3"> <em style="font-style:normal;color:var(--g-lite)">options</em></span></span></h1>
+      <span class="rule reveal" style="--d:4"></span>
+      <p class="ihero__sub reveal" style="--d:5">Patient financing is available through Cherry, so you can start care now and pay over time.</p>
+      <div class="ihero__acts reveal" style="--d:6">
+        <a class="btn btn-lite" href="https://pay.withcherry.com/4livingwell?utm_source=merchant&utm_medium=website" target="_blank" rel="noopener">Apply with Cherry</a>
+        <a class="btn btn-ghost" href="capela-living-well-special.html">$47 Health Assessment</a>
+      </div>
     </div>
-  </div>
-  <div class="wave" style="--wave-end:#fff">
-    <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M1440 276.8s-255.057-1.964-432-1.54c-26.047.061-51.843 15.76-73.44 15.94-30.357.252-54.058-14.95-70.56-14.4-30.211 1.008-48 25.2-72 21.6-24-3.6-48-28.8-72-28.8s-48 25.2-72 28.8c-24 3.6-41.789-20.592-72-21.6-16.769-.559-42.412 14.64-73.44 14.388-21.623-.175-44.532-15.871-70.56-15.932C254.828 274.847 0 276.8 0 276.8V320h1440v-43.2Z"/></svg>
-    <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M1440 276.8s-255.057-1.964-432-1.54c-26.047.061-51.843 15.76-73.44 15.94-30.357.252-54.058-14.95-70.56-14.4-30.211 1.008-48 25.2-72 21.6-24-3.6-48-28.8-72-28.8s-48 25.2-72 28.8c-24 3.6-41.789-20.592-72-21.6-16.769-.559-42.412 14.64-73.44 14.388-21.623-.175-44.532-15.871-70.56-15.932C254.828 274.847 0 276.8 0 276.8V320h1440v-43.2Z"/></svg>
   </div>
 </header>
 
+<!-- ============ PATIENT FINANCING (Cherry: direct apply link, no widget) ============ -->
+<section class="sec" id="financing">
+  <div class="wrap" style="max-width:72ch">
+    <div class="reveal">
+      <span class="eyebrow">Patient financing</span>
+      <h2 style="margin-top:.3em">Pay over time with Cherry</h2>
+      <span class="rule"></span>
+      <p class="lead" style="margin-top:1.2em">With Cherry, you can spread the cost of your care into monthly payments. You apply on Cherry's website.</p>
+      <div style="margin-top:1.6em;display:flex;gap:12px;flex-wrap:wrap">
+        <a href="https://pay.withcherry.com/4livingwell?utm_source=merchant&utm_medium=website" class="btn btn-primary" target="_blank" rel="noopener">Apply with Cherry</a>
+        <a href="tel:3303453336" class="btn btn-ghost">Call (330) 345-3336</a>
+      </div>
+      <p style="margin-top:1.6em;color:var(--ink-soft)">Have a question about paying for care? Give us a call and we're happy to help.</p>
+    </div>
+  </div>
+</section>
 
 <footer class="foot" id="foot">
   <div class="wrap">
@@ -132,7 +145,7 @@
 
 <div class="mobar">
   <a href="tel:3303453336" class="btn btn-ghost">Call</a>
-  <a href="capela-living-well-contact.html#form" class="btn btn-primary">Send a message</a>
+  <a href="#form" class="btn btn-primary">Send a message</a>
 </div>
 
 <script src="sage.js"></script>

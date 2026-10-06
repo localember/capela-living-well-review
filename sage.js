@@ -125,6 +125,42 @@
   });
 
 
+  /* ---- header: keep the fixed nav below the utility bar ----
+     The bar wraps to two lines on some widths; the nav's top offset follows
+     its real height (CSS var --util-h, used by le-nav.css). */
+  var utilBar = $('.util');
+  function setUtilH(){
+    document.documentElement.style.setProperty('--util-h', (utilBar ? utilBar.offsetHeight : 0) + 'px');
+  }
+  setUtilH();
+  addEventListener('resize', setUtilH, {passive:true});
+  addEventListener('load', setUtilH);
+
+  /* ---- desktop dropdowns ("Who We Are") ----
+     Hover and keyboard focus open them in CSS; the chevron button toggles
+     them for touch screens wide enough to show the desktop nav. */
+  var dds = $$('.nav__dd');
+  function closeDds(except){
+    dds.forEach(function(d){
+      if (d === except) return;
+      d.classList.remove('is-open');
+      var b = $('.nav__dd-btn', d); if (b) b.setAttribute('aria-expanded','false');
+    });
+  }
+  dds.forEach(function(dd){
+    var b = $('.nav__dd-btn', dd);
+    if (!b) return;
+    b.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      var open = !dd.classList.contains('is-open');
+      closeDds(dd);
+      dd.classList.toggle('is-open', open);
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  document.addEventListener('click', function(e){ if (!e.target.closest('.nav__dd')) closeDds(); });
+  addEventListener('keydown', function(e){ if (e.key === 'Escape') closeDds(); });
+
   /* ---- mobile nav panel ----
      HTML has .nav__burger but no handler historically; this builds a slide-down
      panel from the same .nav__links (+ Schedule CTA) so every page stays in sync. */
@@ -142,10 +178,28 @@
     panelInner.className = 'nav__panel-inner';
     var linkSrc = $('.nav__links', nav);
     if (linkSrc) {
-      $$('a', linkSrc).forEach(function(a){
-        var c = a.cloneNode(true);
-        c.classList.remove('on');
-        panelInner.appendChild(c);
+      /* Top-level links clone as they are. A dropdown (.nav__dd) becomes its
+         top link followed by its sub-links, indented, so on a phone the
+         "Who We Are" entries are one tap away with nothing to expand. */
+      [].slice.call(linkSrc.children).forEach(function(el){
+        if (el.tagName === 'A') {
+          panelInner.appendChild(el.cloneNode(true));
+        } else if (el.classList.contains('nav__dd')) {
+          var top = $('.nav__dd-top', el);
+          var topHref = top ? top.getAttribute('href') : null;
+          if (top) {
+            var tc = top.cloneNode(true);
+            tc.className = '';
+            if (top.classList.contains('on')) tc.classList.add('on');
+            panelInner.appendChild(tc);
+          }
+          $$('.nav__dd-menu a', el).forEach(function(a){
+            if (a.getAttribute('href') === topHref) return;
+            var sc = a.cloneNode(true);
+            sc.classList.add('nav__panel-sub');
+            panelInner.appendChild(sc);
+          });
+        }
       });
     }
     var cta = $('.nav__cta .btn', nav);
@@ -160,8 +214,13 @@
     burger.setAttribute('aria-expanded', 'false');
     burger.setAttribute('aria-controls', 'nav-panel');
 
+    var burgerOpenSvg = burger.innerHTML;
+    var burgerCloseSvg = '<svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
     function setOpen(open){
+      burger.innerHTML = open ? burgerCloseSvg : burgerOpenSvg;
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
       if (open) {
+        document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
         panel.removeAttribute('hidden');
         panel.classList.add('is-open');
         burger.setAttribute('aria-expanded', 'true');
