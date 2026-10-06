@@ -62,17 +62,15 @@
 .info__row .ic,summary::after{background-color:rgba(93,113,86,.1)}
 .cta__row .ic,.offer__inc li::before{background-color:rgba(165,183,156,.22)}
 </style>
-<style>/* Five core services (2026-10-06 design review). Home, About and the
-   footer all say five core services, so the main grid shows exactly those
-   five and Supplements moved down into "More we offer", still linking to its
-   page. Five cards on a three-column grid left a hole, so on desktop the
-   first row holds three and the second row two wider cards. */
-@media (min-width:1081px){
-  .hub--five{grid-template-columns:repeat(6,minmax(0,1fr))}
-  .hub--five>*{grid-column:span 2}
-  .hub--five>:nth-child(n+4){grid-column:span 3}
-}
-@media (min-width:721px) and (max-width:1080px){ .hub--five>:last-child{grid-column:1/-1} }
+<style>/* Four core services (2026-10-06). Functional neurology moved to the
+   Complete Chiropractic site, so the main grid holds the four core services
+   that Home, About and the footer list. On desktop they sit two by two so no
+   row is left with a hole; tablets already use two columns, phones one.
+   Supplements and a small Functional Neurology pointer live in "More we offer". */
+@media (min-width:1081px){ .hub--four{grid-template-columns:repeat(2,minmax(0,1fr))} }
+/* "More we offer" holds nine items with the Functional Neurology pointer, so
+   from tablet up it runs three by three instead of leaving one card alone. */
+@media (min-width:721px){ #more-services .xsvc__grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
 .xsvc--link{padding:0}
 .xsvc--link>a{display:flex;flex-direction:column;height:100%;padding:clamp(18px,1.6vw,24px);color:inherit;border-radius:inherit}
 .xsvc__go{display:inline-flex;align-items:center;gap:.45em;margin-top:.7em;font-size:13.5px;font-weight:500;color:var(--g-band)}
@@ -115,7 +113,7 @@
     <div class="nav__inner">
       <a href="index.html" class="brand" aria-label="Living Well"><img class="brand__icon" src="assets/brand-spine-icon.webp" alt="" aria-hidden="true"> <span class="le-brandtxt">Living Well</span></a>
       <div class="nav__links">
-        <a href="index.html">Home</a><div class="nav__dd"><a href="capela-living-well-about.html" class="nav__dd-top">Who We Are</a><button type="button" class="nav__dd-btn" aria-expanded="false" aria-controls="dd-who" aria-label="Show the Who We Are menu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="nav__dd-menu" id="dd-who"><a href="capela-living-well-about.html">Meet the Team</a><a href="capela-living-well-payment-options.html">Payment Options</a></div></div><a href="capela-living-well-services.html" class="on" aria-current="page">Services</a><a href="capela-living-well-service-functional-neurology.html">Functional Neurology</a><a href="capela-living-well-contact.html">Contact</a>
+        <a href="index.html">Home</a><div class="nav__dd"><a href="capela-living-well-about.html" class="nav__dd-top">Who We Are</a><button type="button" class="nav__dd-btn" aria-expanded="false" aria-controls="dd-who" aria-label="Show the Who We Are menu"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="nav__dd-menu" id="dd-who"><a href="capela-living-well-about.html">Meet the Team</a><a href="capela-living-well-payment-options.html">Payment Options</a></div></div><a href="capela-living-well-services.html" class="on" aria-current="page">Services</a><a href="capela-living-well-contact.html">Contact</a>
       </div>
       <div class="nav__cta">
         <a href="capela-living-well-special.html" class="btn btn-lite">Schedule an appointment</a>
@@ -151,9 +149,8 @@
          hub, at 14, does not get one. -->
     
 
-    <div class="hub hub--five">
-      <a class="card hcard reveal" id="s-functional-neurology" style="--d:0" href="capela-living-well-service-functional-neurology.html"><h3>Functional Neurology</h3><p>A gentle, whole-person approach for brain fog, loss of memory, dizziness or trouble with speech.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="card hcard reveal" id="s-functional-medicine" style="--d:1" href="capela-living-well-service-functional-medicine.html"><h3>Functional Medicine</h3><p>Proper testing and a full history, to find what is actually driving how you feel.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <div class="hub hub--four">
+      <a class="card hcard reveal" id="s-functional-medicine" style="--d:0" href="capela-living-well-service-functional-medicine.html"><h3>Functional Medicine</h3><p>Proper testing and a full history, to find what is actually driving how you feel.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       <a class="card hcard reveal" id="s-weight-loss" style="--d:1" href="capela-living-well-service-weight-loss.html"><h3>Weight Loss</h3><p>A coached program built on food, habits, and the metabolic picture behind them.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       <a class="card hcard reveal" id="s-red-light-therapy" style="--d:2" href="capela-living-well-service-red-light-therapy.html"><h3>Red Light Therapy</h3><p>Red and near-infrared light to support recovery in a sore area, without medication and without downtime.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       <a class="card hcard reveal" id="s-nutrition" style="--d:3" href="capela-living-well-service-nutrition.html"><h3>Nutrition</h3><p>Straightforward nutrition guidance for energy and recovery.</p><span class="hcard__go">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
@@ -181,6 +178,7 @@
         <li class="card xsvc reveal" style="--d:1"><h3>Styku body scan</h3><p>A 3D body scan that tracks shape and measurements.</p></li>
 <li class="card xsvc reveal" style="--d:3"><h3>Lab testing</h3><p>Testing such as gut, hormone, toxin and nutrient panels.</p></li>
         <li class="card xsvc xsvc--link reveal" id="s-supplements" style="--d:0"><a href="capela-living-well-service-supplements.html"><h3>Supplements</h3><p>Guided supplementation as part of your plan, with brands you can order online.</p><span class="xsvc__go">Learn more <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li class="card xsvc xsvc--link reveal" id="s-functional-neurology" style="--d:1"><a href="https://localember.github.io/capela-chiro-review/capela-chiro-service-functional-neurology.html"><h3>Functional Neurology</h3><p>Offered with Dr. Dale at Complete Chiropractic, in the same building.</p><span class="xsvc__go">Visit Complete Chiropractic <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
     </ul>
   </div>
 </section>
@@ -211,7 +209,7 @@
     <div class="foot__megawrap"><h2 class="foot__mega" id="mega">Contact <em>Us</em></h2></div>
     <div class="foot__cards foot__cards--two">
       <div class="card fc fc--g reveal" style="--d:0"><h3>Living Well</h3><ul><li>5225 Cleveland Rd, Suite A2<br>Wooster, OH 44691</li><li><a href="tel:3303453336">(330) 345-3336</a></li><li>Open Monday, Wednesday and Thursday</li><li><a href="capela-living-well-new-patient-paperwork.html">New patient paperwork</a></li><li><a href="capela-living-well-payment-options.html">Payment options</a></li></ul></div>
-      <div class="card fc reveal" style="--d:1"><h3>Services</h3><ul><li><a href="capela-living-well-service-functional-medicine.html">Functional Medicine</a></li><li><a href="capela-living-well-service-functional-neurology.html">Functional Neurology</a></li><li><a href="capela-living-well-service-weight-loss.html">Weight Loss</a></li><li><a href="capela-living-well-service-red-light-therapy.html">Red Light Therapy</a></li><li><a href="capela-living-well-service-nutrition.html">Nutrition</a></li><li></li></ul></div>
+      <div class="card fc reveal" style="--d:1"><h3>Services</h3><ul><li><a href="capela-living-well-service-functional-medicine.html">Functional Medicine</a></li><li><a href="capela-living-well-service-weight-loss.html">Weight Loss</a></li><li><a href="capela-living-well-service-red-light-therapy.html">Red Light Therapy</a></li><li><a href="capela-living-well-service-nutrition.html">Nutrition</a></li><li></li></ul></div>
 
     </div>
     <div class="foot__base"><span>&copy; 2026 Living Well</span><span class="spacer"></span><span>Preview for client review. Not yet live.</span></div>
