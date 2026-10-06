@@ -87,6 +87,19 @@
 .hero__fn-tag{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.25em .7em;border-radius:999px;background:var(--g-lite);color:var(--g-deep)}
 .hero__fn svg{display:inline-block;vertical-align:-2px;margin-left:.4em}
 </style>
+<style>/* Home hero legibility (2026-10-06 design review). The eyebrow sat at
+   70% white over the busiest part of the team photo. It now reads as white
+   text on a small dark pill, and the overlay behind the text block is a
+   little deeper on the left (desktop) and at the bottom (phone). Scoped to
+   this hero only; the photo stays visible on the right and at the top. */
+#hero .eyebrow{color:#fff;background:rgba(8,12,10,.62);border:1px solid rgba(255,255,255,.18);padding:.55em 1.05em;border-radius:14px;font-size:12.5px;letter-spacing:.2em;line-height:1.5;text-shadow:0 1px 2px rgba(0,0,0,.5);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+#hero .hero__scrim{background:linear-gradient(180deg,rgba(8,12,10,.72) 0%,rgba(8,12,10,.4) 14%,rgba(8,12,10,.08) 28%),linear-gradient(0deg,rgba(8,12,10,.95) 0%,rgba(8,12,10,.76) 24%,rgba(8,12,10,.24) 52%),linear-gradient(90deg,rgba(8,12,10,.74) 0%,rgba(8,12,10,.5) 30%,rgba(8,12,10,.14) 54%,rgba(8,12,10,0) 70%)}
+@media (min-width:721px){ #hero .eyebrow{white-space:nowrap;letter-spacing:.18em} }
+@media (max-width:720px){
+  #hero .eyebrow{font-size:11.5px;letter-spacing:.14em;padding:.5em .85em}
+  #hero .hero__scrim{background:linear-gradient(180deg,rgba(8,12,10,.7) 0%,rgba(8,12,10,.1) 18%),linear-gradient(0deg,rgba(8,12,10,.97) 0%,rgba(8,12,10,.86) 34%,rgba(8,12,10,.5) 52%,rgba(8,12,10,.14) 70%)}
+}
+</style>
 <link rel="stylesheet" href="le-nav.css">
 </head>
 <body>

@@ -227,10 +227,12 @@
         panel.classList.add('is-open');
         burger.setAttribute('aria-expanded', 'true');
         document.body.classList.add('nav-open');
+        document.documentElement.classList.add('nav-open');   // scroll lock (le-nav.css)
       } else {
         panel.classList.remove('is-open');
         burger.setAttribute('aria-expanded', 'false');
         document.body.classList.remove('nav-open');
+        document.documentElement.classList.remove('nav-open');
         // hide after transition
         window.setTimeout(function(){
           if (!panel.classList.contains('is-open')) panel.setAttribute('hidden', '');

@@ -57,3 +57,27 @@ body.nav-open .nav .nav__burger{border-color:var(--stroke);background:#fff;color
 @media (max-width:720px){ section .revs{grid-template-columns:minmax(0,1fr)} }
 .rev{min-width:0}
 .rev p{overflow-wrap:break-word}
+
+/* 6. Phone menu covers the whole screen (2026-10-06 design review). The
+      white sheet used to stop under its last link, so the page showed
+      through below it, including a second Schedule button and the sticky
+      Call/Schedule bar. The sheet now runs the full viewport height over a
+      darker backdrop, the sticky bar is hidden while the menu is open, and
+      the page behind it does not scroll (sage.js adds .nav-open to <html>). */
+.nav__panel{background:rgba(12,16,14,.6)}
+.nav__panel-inner{bottom:0;min-height:100vh;min-height:100dvh;max-height:100vh;max-height:100dvh;overscroll-behavior:contain}
+body.nav-open .mobar{opacity:0;visibility:hidden;pointer-events:none}
+html.nav-open,html.nav-open body{overflow:hidden}
+
+/* 7. "What happens next" steps stack on phones. The special and contact
+      pages pin .steps to three columns in an inline style, which beat
+      sage.css's own phone step, so three narrow columns stayed side by side
+      at 390. */
+@media (max-width:720px){ .steps[style]{grid-template-columns:minmax(0,1fr)!important;row-gap:28px} }
+
+/* 8. Special page hero on phones: the decorative ghost word ("Start") ran
+      into the price and heading, so it is hidden up to 700px. The tinted
+      word in the H1 uses the lighter palette tint at every width, because
+      the mid tint read too faint on the band. */
+@media (max-width:700px){ #first-visit > .ghost{display:none} }
+#first-visit h1 em{color:var(--g-lite-txt,#fff)!important}
