@@ -81,3 +81,16 @@ html.nav-open,html.nav-open body{overflow:hidden}
       the mid tint read too faint on the band. */
 @media (max-width:700px){ #first-visit > .ghost{display:none} }
 #first-visit h1 em{color:var(--g-lite-txt,#fff)!important}
+
+/* 6. Phone menu highlight (2026-10-07, Design). sage.css paints a panel
+      link on :hover. Opening the menu moves the nav up by the utility bar,
+      so the point of the tap on the burger ends up over Home, and Home lit
+      up mint next to the current page. Touch screens get no hover paint, so
+      only the current page (.on) is highlighted. Keyboard users get the same
+      cue on :focus-visible only, never on a plain :focus. */
+@media (hover:none),(pointer:coarse){
+  .nav__panel-inner a:not(.on):not(.nav__panel-cta):hover{background:none;color:var(--ink)}
+  .nav__panel-inner a.nav__panel-sub:not(.on):hover{color:var(--ink-soft)}
+}
+.nav__panel-inner a:focus:not(:focus-visible){outline:0}
+.nav__panel-inner a:not(.nav__panel-cta):focus-visible{background:rgba(18,103,54,.08);color:var(--g-band)}
