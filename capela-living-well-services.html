@@ -68,9 +68,10 @@
    row is left with a hole; tablets already use two columns, phones one.
    Supplements and a small Functional Neurology pointer live in "More we offer". */
 @media (min-width:1081px){ .hub--four{grid-template-columns:repeat(2,minmax(0,1fr))} }
-/* "More we offer" holds nine items with the Functional Neurology pointer, so
-   from tablet up it runs three by three instead of leaving one card alone. */
-@media (min-width:721px){ #more-services .xsvc__grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+/* "More we offer" holds seven items (brain-based, vestibular and Eyelights came off
+   2026-10-07), so from tablet up it runs three across and the Functional Neurology
+   pointer, last, takes the full row instead of sitting alone in one column. */
+@media (min-width:721px){ #more-services .xsvc__grid{grid-template-columns:repeat(3,minmax(0,1fr))} #more-services .xsvc__grid>li:last-child:nth-child(3n+1){grid-column:1/-1} }
 .xsvc--link{padding:0}
 .xsvc--link>a{display:flex;flex-direction:column;height:100%;padding:clamp(18px,1.6vw,24px);color:inherit;border-radius:inherit}
 .xsvc__go{display:inline-flex;align-items:center;gap:.45em;margin-top:.7em;font-size:13.5px;font-weight:500;color:var(--g-band)}
@@ -173,12 +174,10 @@
         <li class="card xsvc reveal" style="--d:0"><h3>RockBlading</h3><p>A manual therapy technique for soft tissue and muscle pain.</p></li>
         <li class="card xsvc reveal" style="--d:1"><h3>Visceral manipulation</h3><p>Gentle hands-on work on the organs and the tissue around them.</p></li>
         <li class="card xsvc reveal" style="--d:2"><h3>Neuro-Fascia and IASTM</h3><p>Instrument-assisted soft tissue work.</p></li>
-        <li class="card xsvc reveal" style="--d:3"><h3>Brain-based and vestibular exercises</h3><p>Exercises for the brain and the balance system.</p></li>
-        <li class="card xsvc reveal" style="--d:0"><h3>Eyelights</h3><p>Light glasses used during brain-based exercises.</p></li>
-        <li class="card xsvc reveal" style="--d:1"><h3>Styku body scan</h3><p>A 3D body scan that tracks shape and measurements.</p></li>
-<li class="card xsvc reveal" style="--d:3"><h3>Lab testing</h3><p>Testing such as gut, hormone, toxin and nutrient panels.</p></li>
-        <li class="card xsvc xsvc--link reveal" id="s-supplements" style="--d:0"><a href="capela-living-well-service-supplements.html"><h3>Supplements</h3><p>Guided supplementation as part of your plan, with brands you can order online.</p><span class="xsvc__go">Learn more <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
-        <li class="card xsvc xsvc--link reveal" id="s-functional-neurology" style="--d:1"><a href="https://localember.github.io/capela-chiro-review/capela-chiro-service-functional-neurology.html"><h3>Functional Neurology</h3><p>Offered with Dr. Dale at Complete Chiropractic, in the same building.</p><span class="xsvc__go">Visit Complete Chiropractic <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li class="card xsvc reveal" style="--d:0"><h3>Styku body scan</h3><p>A 3D body scan that tracks shape and measurements.</p></li>
+        <li class="card xsvc reveal" style="--d:1"><h3>Lab testing</h3><p>Testing such as gut, hormone, toxin and nutrient panels.</p></li>
+        <li class="card xsvc xsvc--link reveal" id="s-supplements" style="--d:2"><a href="capela-living-well-service-supplements.html"><h3>Supplements</h3><p>Guided supplementation as part of your plan, with brands you can order online.</p><span class="xsvc__go">Learn more <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li class="card xsvc xsvc--link reveal" id="s-functional-neurology" style="--d:0"><a href="https://localember.github.io/capela-chiro-review/capela-chiro-service-functional-neurology.html"><h3>Functional Neurology</h3><p>Offered with Dr. Dale at Complete Chiropractic, in the same building, with tools like the nerve rebuilder, PEMF and infrared light therapy.</p><span class="xsvc__go">Visit Complete Chiropractic <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
     </ul>
   </div>
 </section>
